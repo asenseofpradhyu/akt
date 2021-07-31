@@ -146,7 +146,7 @@
 <script src="<?php echo URLROOT; ?>/js/vendor/jquery-3.3.1.min.js"></script>
 <script src="<?php echo URLROOT; ?>/js/vendor/js.cookie.js"></script>
 <!-- <script src="https://www.paypal.com/sdk/js?client-id=Ac4d30_5TN6peHK3XtGenj1DdQqkYB-O3sWt7fmDY8XOcP2P1klSFq-AzEiFJ5WUPU3rzXv2ThC4FppX&currency=INR">/script> -->
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<!-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> -->
 <!--Including Javascript-->
 <script src="<?php echo URLROOT; ?>/js/plugins.js"></script>
 <script src="<?php echo URLROOT; ?>/js/main.js"></script>

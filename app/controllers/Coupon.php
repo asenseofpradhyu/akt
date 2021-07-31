@@ -46,7 +46,7 @@ class Coupon extends Controller{
         $this->CouponModel->attributes['no_of_attempts'] = $request['no_of_attempts'];
         $saveSuccess = $this->CouponModel->save();
         if($saveSuccess){
-            die('yey');
+            redirect('coupon/couponList');
         }else{
             die('oh crap!');
         }
@@ -55,8 +55,7 @@ class Coupon extends Controller{
     public function checkApplyCoupon(){
         $coupon_code = $_REQUEST['coupon_code'];
         $cou = $this->CouponModel->checkApplyCoupon($coupon_code);
-        $cou = json_encode($cou);
-        return json_encode(['status' => 1, 'coupon_code' => $cou]);
+        echo json_encode(['status' => 1, 'coupon_code' => (array)$cou]);
         // return $cou;
     }
 }

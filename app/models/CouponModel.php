@@ -66,7 +66,7 @@ class CouponModel{
 
     public function checkApplyCoupon($coupon_code)
     {
-        $query = 'SELECT * FROM coupons WHERE no_of_attempts>= no_of_used AND coupon_code = :coupon_code';
+        $query = 'SELECT * FROM coupons WHERE no_of_attempts>= no_of_used AND coupon_code = :coupon_code limit 1';
         $this->db->query($query);
         $this->db->bind(':coupon_code', $coupon_code);
         return $this->db->single();

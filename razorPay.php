@@ -23,11 +23,11 @@ class RazorPay
         //
         $orderData = [
             'receipt'         => $this->pay_var['receipt'],
-            'amount'          => $this->pay_var['amount'], //* 100, // rupees in paise commented
+            'amount'          => $this->pay_var['amount'], // * 100, // rupees in paise commented
             'currency'        => $this->currency,
             'payment_capture' => 1 // auto capture
         ];
-
+        // die(print_r($this->api));
         $razorpayOrder = $this->api->order->create($orderData);
 
         $razorpayOrderId = $razorpayOrder['id'];
@@ -66,7 +66,7 @@ class RazorPay
 
         // if ($this->currency !== 'INR') {
             $data['display_currency']  = $this->currency;
-            $data['display_amount']    = $displayAmount;
+            $data['display_amount']    = (float)($displayAmount / 100);
         // }
             
         $json = json_encode($data);

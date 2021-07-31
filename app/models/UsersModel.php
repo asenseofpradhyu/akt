@@ -155,6 +155,13 @@
       }
     }
 
+    public function saveShippingAddress(array $shipping_address){
+      $keys = implode(array_keys($shipping_address));
+      $values = implode(array_values($shipping_address));
+      $query = "INSERT INTO shipping_info ($keys) VALUES ($values)";
+      $this->db->query($query);
+      return $this->db->execute();
+    }
 
 }
 ?>

@@ -453,9 +453,9 @@ $('#apply_coupon').click(function (e) {
         data: { method: 'applyCouponCode', coupon_code: coupon_code },
         dataType: 'JSON',
         success: function (response) {
-            // data = JSON.parse(response);
-            console.log(response);
             if(response.coupon_code != []){
+                $('#coupon_id').val(response.coupon_code.coupon_code);
+                alert('coupon applied');
             }else{
                 alert('coupons can not be used not exist');
             }
@@ -468,3 +468,7 @@ function removeCrap(data) {
     filterData = filterData.substring(0, filterData.indexOf('<'));
     return filterData;
  }
+
+function submitCartForm(){
+    $('#cartForm').submit();
+}

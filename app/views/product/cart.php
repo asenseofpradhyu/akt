@@ -15,7 +15,7 @@
         <div class="row">
             <!--Main Content-->
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 main-col">
-                <form action="#" method="post" class="cart style2">
+                <form id="cartForm" action="<?php echo URLROOT; ?>/product/checkout/<?php echo $_SESSION['customer_id']; ?>" method="post" class="cart style2">
                     <table>
                         <thead class="cart__row cart__header">
                             <tr>
@@ -31,7 +31,7 @@
 
                             $subtotal = 0;
                             foreach ($data['img'] as $nav) :
-                                $subtotal += $nav->discount_price;
+                                $subtotal += ($nav->discount_price * $nav->qnty);
                             ?>
 
                                 <tr class="cart__row border-bottom line1 cart-flex border-top">
@@ -50,10 +50,10 @@
                                         <span class="money"><?php echo $nav->discount_price; ?></span>
                                     </td>
                                     <td class="cart__update-wrapper cart-flex-item text-right">
-                                        <span class="money"><?php echo '2'; ?></span>
+                                        <span class="money"><?php echo $nav->qnty; ?></span>
                                     </td>
                                     <td class="text-right small--hide cart-price">
-                                        <div><span class="money"><?php echo $subtotal; ?></span></div>
+                                        <div><span class="money"><?php echo ($nav->discount_price * $nav->qnty); ?></span></div>
                                     </td>
                                     <td class="text-center small--hide">
                                         <a href="javascript:void(0);" class="btn btn--secondary cart__remove" data-id="<?php echo $nav->product_id; ?>" title="Remove item"><i class="icon icon anm anm-times-l"></i></a>
@@ -71,8 +71,7 @@
 
                     <div class="currencymsg">We processes all orders in USD. While the content of your cart is currently displayed in USD, the checkout will use USD at the most current exchange rate.</div>
                     <hr>
-
-
+                    <input type="hidden" name="coupon_id" id="coupon_id">
                 </form>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
@@ -87,15 +86,17 @@
                         <span class="col-12 col-sm-6 text-right"><span class="money"><?php echo $subtotal; ?></span></span>
                     </div>
                     <div class="row border-bottom pb-2 pt-2">
-                        <span class="col-12 col-sm-6 cart__subtotal-title">Tax</span>
-                        <span class="col-12 col-sm-6 text-right">$10.00</span>
+                        <span class="col-12 col-sm-6 cart__subtotal-title">Shipping Charges</span>
+                        <?php $shipping_charges = (($subtotal > 500)? 0 : 60); ?>
+                        <span class="col-12 col-sm-6 text-right"><?php echo $shipping_charges; ?></span>
                     </div>
                     <div class="row border-bottom pb-2 pt-2">
                         <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Grand Total</strong></span>
-                        <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money"><?php echo $subtotal; ?></span></span>
+                        <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money"><?php echo $subtotal + $shipping_charges; ?></span></span>
                     </div>
 
-                    <a href='<?php echo URLROOT; ?>/product/checkout/<?php echo $_SESSION['customer_id']; ?>' class='btn btn--small-wide checkout w-100'>Proceed To Checkout</a>
+
+                    <a href="javascript:void(0);" onclick="submitCartForm()" class='btn btn--small-wide checkout w-100'>Proceed To Checkout</a>
                     <div class="paymnet-img"><img src="<?php echo URLROOT; ?>/images/payment-img.jpg" alt="Payment"></div>
 
 

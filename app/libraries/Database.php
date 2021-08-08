@@ -60,8 +60,13 @@
     }
 
     // Execute the prepared statement
-    public function execute(){
-      return $this->stmt->execute();
+    public function execute($getId = false){
+      if($getId == true){
+        $this->stmt->execute();
+        return $this->dbh->lastInsertId();
+      }else{
+        return $this->stmt->execute();
+      }
     }
 
     // Get result set as array of objects

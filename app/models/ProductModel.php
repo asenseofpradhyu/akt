@@ -119,11 +119,33 @@ class ProductModel
   }
 
   public function saveBasicOrder(array $param){
-      $keys = implode(array_keys($param));
-      $values = implode(array_values($param));
-      $query = "INSERT INTO product_orders ($keys) VALUES ($values)";
+      $keys = implode(',', array_keys($param));
+      $values = implode("','", array_values($param));
+      $query = "INSERT INTO product_orders ($keys) VALUES ('$values')";
       $this->db->query($query);
-      return $this->db->execute();
+      return $this->db->execute(true);
+  }
+
+  public function moveCartToOrderDetails(array $param){
+    $login_user_id = $param['user_id'];
+    $this->db->query("SELECT * FROM cart WHERE customer_id = $login_user_id");
+    $count = $this->db->rowCount();
+    $carts = $this->db->resultSet();
+
+    // now remove cart from customer
+    $this->db->query("DELETE FROM cart WHERE customer_id = $login_user_id");
+    $this->db->execute();
+
+    // carts move to order details
+    $query_array = [];
+    foreach ($carts as $key => $cart_array) {
+      $query_array[] = "(".$param['order_id'].", ".$cart_array->product_id.", ".$cart_array->qnty.", ".$cart_array->color_id.", ".$cart_array->size_id.")";
+    }
+    $query_array = implode(', ', $query_array);
+    $final_insert = (($count > 1)? "($query_array)" : $query_array);
+    $insert_query = "INSERT INTO order_details(order_id, product_id, quantity, color_id, size_id) VALUES $final_insert";
+    $this->db->query($insert_query);
+    return $this->db->execute(true);
   }
 
 }

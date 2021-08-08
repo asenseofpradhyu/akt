@@ -30,35 +30,35 @@
                                 </div>
                             </div><label class="text-uppercase">Country:</label>
                             <div class="form-group select-wrapper"><select class="form-control" name="country_id">
-                                    <option value="United States">United States</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="China">China</option>
-                                    <option value="India">India</option>
-                                    <option value="Italy">Italy</option>
-                                    <option value="Mexico">Mexico</option>
+                                    <option value="1">United States</option>
+                                    <option value="2">Canada</option>
+                                    <option value="3">China</option>
+                                    <option value="4">India</option>
+                                    <option value="5">Italy</option>
+                                    <option value="6">Mexico</option>
                                 </select></div>
                             <div class="row">
                                 <div class="col-sm-6"><label class="text-uppercase">State:</label>
                                     <div class="form-group select-wrapper"><select class="form-control" name="state_id">
-                                            <option value="AL">Alabama</option>
-                                            <option value="AK">Alaska</option>
-                                            <option value="AZ">Arizona</option>
-                                            <option value="AR">Arkansas</option>
-                                            <option value="CA">California</option>
-                                            <option value="CO">Colorado</option>
-                                            <option value="CT">Connecticut</option>
-                                            <option value="DE">Delaware</option>
-                                            <option value="DC">District Of Columbia</option>
-                                            <option value="FL">Florida</option>
-                                            <option value="GA">Georgia</option>
-                                            <option value="HI">Hawaii</option>
-                                            <option value="ID">Idaho</option>
-                                            <option value="IL">Illinois</option>
-                                            <option value="IN">Indiana</option>
-                                            <option value="IA">Iowa</option>
-                                            <option value="KS">Kansas</option>
-                                            <option value="KY">Kentucky</option>
-                                            <option value="LA">Louisiana</option>
+                                            <option value="1">Alabama</option>
+                                            <option value="2">Alaska</option>
+                                            <option value="3">Arizona</option>
+                                            <option value="4">Arkansas</option>
+                                            <option value="5">California</option>
+                                            <option value="6">Colorado</option>
+                                            <option value="7">Connecticut</option>
+                                            <option value="8">Delaware</option>
+                                            <option value="9">District Of Columbia</option>
+                                            <option value="10">Florida</option>
+                                            <option value="11">Georgia</option>
+                                            <option value="12">Hawaii</option>
+                                            <option value="13">Idaho</option>
+                                            <option value="14">Illinois</option>
+                                            <option value="15">Indiana</option>
+                                            <option value="16">Iowa</option>
+                                            <option value="17">Kansas</option>
+                                            <option value="18">Kentucky</option>
+                                            <option value="19">Louisiana</option>
                                         </select></div>
                                 </div>
                                 <div class="col-sm-6"><label class="text-uppercase">zip/postal code:</label>

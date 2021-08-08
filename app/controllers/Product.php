@@ -154,6 +154,12 @@ class Product extends Controller
         $basic_order = $this->ProductModel->saveBasicOrder($order_details);
 
         // save detailed products
-        
+        $login_user_id = $_SESSION['customer_id'];
+        $get_cart      = $this->ProductModel->moveCartToOrderDetails(['user_id' => $login_user_id, 'order_id' => $basic_order]);
+        if($get_cart){
+            return redirect('/');
+        }else{
+            die('something went wrong');
+        }
     }
 }

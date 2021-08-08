@@ -156,11 +156,19 @@
     }
 
     public function saveShippingAddress(array $shipping_address){
-      $keys = implode(array_keys($shipping_address));
-      $values = implode(array_values($shipping_address));
-      $query = "INSERT INTO shipping_info ($keys) VALUES ($values)";
+      $keys = implode(',', array_keys($shipping_address));
+      $values = implode("','", array_values($shipping_address));
+      $query = "INSERT INTO shipping_info ($keys) VALUES ('$values')";
       $this->db->query($query);
-      return $this->db->execute();
+      return $this->db->execute(true);
+    }
+
+    public function savePaymentDetails(array $payment_info){
+      $keys = implode(',', array_keys($payment_info));
+      $values = implode("','", array_values($payment_info));
+      $query = "INSERT INTO purchases ($keys) VALUES ('$values')";
+      $this->db->query($query);
+      return $this->db->execute(true);
     }
 
 }

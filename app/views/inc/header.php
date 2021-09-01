@@ -18,7 +18,7 @@
 <div id="pre-loader"> <img src="<?php echo URLROOT; ?>/images/loader.gif" alt="Loading..." /> </div>
 <div class="page-wrapper">
 <!--Promotion Bar-->
-<div class="notification-bar mobilehide"> <a href="#" class="notification-bar__message">Free Shipping in India Limited period, Hurry!  |  Store Location  |  Call us 1800 120 000 500</a> <span class="close-announcement"><i class="anm anm-times-l" aria-hidden="true"></i></span> </div>
+<div class="notification-bar mobilehide"> <a href="<?php echo $data['offer_link']->link_url; ?>" class="notification-bar__message"><?php echo $data['offer_link']->content; ?></a> <span class="close-announcement"><i class="anm anm-times-l" aria-hidden="true"></i></span> </div>
 <!--End Promotion Bar--> 
   <?php require APPROOT . '/views/inc/navbar.php'; ?>
   <!-- <div class="container"> -->

@@ -8,8 +8,9 @@ class Controller
 
   public function __construct()
   {
-    $this->NavigationModel = $this->model('NavigationModel');
-    $this->HomepageModel = $this->model('HomepageModel');
+    $this->NavigationModel      = $this->model('NavigationModel');
+    $this->HomepageModel        = $this->model('HomepageModel');
+    $this->data['offer_link']   = $this->HomepageModel->getlinkByTitle('offer_link');
   }
 
   // Load model
@@ -25,6 +26,7 @@ class Controller
   // Load view
   public function view($view, $data = [])
   {
+    $data = array_merge($data, $this->data);
     // Check for view file
     if (file_exists('../app/views/' . $view . '.php')) {
       require_once '../app/views/' . $view . '.php';

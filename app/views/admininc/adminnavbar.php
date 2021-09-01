@@ -317,6 +317,7 @@
                                 <li><a href="<?php echo URLROOT; ?>/homepage/accessories">Accessories</a></li>
                                 <li><a href="<?php echo URLROOT; ?>/homepage/testimonial">Testimonial</a></li>
                                 <li><a href="<?php echo URLROOT; ?>/homepage/emailsubs">Email Subscribtion</a></li>
+                                <li><a href="<?php echo URLROOT; ?>/homepage/offerLink">Offer Link</a></li>
                             </ul>
                         </li>
                         <li class="treeview">

@@ -398,4 +398,25 @@ class HomepageModel
     $row = $this->db->resultSet();
     return $row;
   }
+
+  public function getlinkByTitle(string $link_title){
+    $this->db->query('SELECT * FROM misc_links WHERE link_for = :link_type');
+    $this->db->bind(':link_type', $link_title);
+    return $this->db->single();
+  }
+
+  public function saveLinkText($link_params, $enum){
+    $link_text = $link_params['offer_link_text'];
+    $link_url  = $link_params['offer_link_url'];
+    $link_id   = $link_params['id'];
+    $query     = '';
+    if(!empty($link_id)){
+      $query = "UPDATE misc_links SET content='$link_text', link_url='$link_url' WHERE id='$link_id'";
+    }else{
+      $query = "INSERT INTO misc_links (link_for, content, link_url) VALUES ('$enum', '$link_text', '$link_url')";
+    }
+    $this->db->query($query);
+    $getId = $this->db->execute(1);
+    return $getId;
+  }
 }

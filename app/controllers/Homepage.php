@@ -1264,4 +1264,15 @@ class Homepage extends Controller
       redirect('homepage/emailsubs');
     }
   }
+  
+  public function offerLink(){
+    $link = $this->HomepageModel->getlinkByTitle('offer_link');
+    $data = ['link_obj' => $link];
+    $this->view('homepage/saveLinkPage', $data);
+  }
+
+  public function saveMiscLink($link_id){
+    $link_save = $this->HomepageModel->saveLinkText($_POST, 'offer_link');
+    return redirect('homepage/offerLink');
+  }
 }

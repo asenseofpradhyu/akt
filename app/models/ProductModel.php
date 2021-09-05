@@ -136,16 +136,25 @@ class ProductModel
     $this->db->query("DELETE FROM cart WHERE customer_id = $login_user_id");
     $this->db->execute();
 
-    // carts move to order details
+    // carts move to order details and remove quantity from stock
     $query_array = [];
     foreach ($carts as $key => $cart_array) {
       $query_array[] = "(".$param['order_id'].", ".$cart_array->product_id.", ".$cart_array->qnty.", ".$cart_array->color_id.", ".$cart_array->size_id.")";
+
+      // change quantity after product bought
+      $this->replaceQuantityProduct($cart_array);
     }
     $query_array = implode(', ', $query_array);
     $final_insert = (($count > 1)? "($query_array)" : $query_array);
     $insert_query = "INSERT INTO order_details(order_id, product_id, quantity, color_id, size_id) VALUES $final_insert";
     $this->db->query($insert_query);
     return $this->db->execute(true);
+  }
+
+  public function replaceQuantityProduct(object &$cart_detail){
+    $this->db->query("UPDATE product_detail SET stock=stock- ".$cart_detail->qnty." WHERE product_id=". $cart_detail->product_id);
+    $this->db->execute();
+    return true;
   }
 
 }

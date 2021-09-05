@@ -157,6 +157,18 @@ class ProductModel
     return true;
   }
 
+  public function getPurchasedProductDetails(int $orderId){
+    $query = "SELECT detail.product_name, detail.discount_price, ord.quantity, ord.size_id, c.color, detail.product_code FROM product_orders INNER JOIN order_details AS ord ON product_orders.id=ord.order_id INNER JOIN product_detail AS detail ON ord.product_id = detail.product_id INNER JOIN color AS c ON ord.color_id = c.color_id WHERE product_orders.id= $orderId";
+    $this->db->query($query);
+    return $this->db->resultSet();
+  }
+
+  public function getShippingDetail(int $orderId){
+    $query = "SELECT ship.*, p.purchase_json FROM product_orders INNER JOIN shipping_info AS ship ON product_orders.shipping_address_id=ship.id INNER JOIN purchases AS p ON product_orders.purchase_id=p.id WHERE product_orders.id= $orderId";
+    $this->db->query($query);
+    return $this->db->single();
+  }
+
 }
 
 

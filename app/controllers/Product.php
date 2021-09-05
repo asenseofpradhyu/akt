@@ -87,9 +87,9 @@ class Product extends Controller
         $singleimg = $this->ProductModel->getCartProductSingleImg($customerID);
         $payment_info = $this->getPayableAmount($singleimg, ['coupon_id' => $_REQUEST['coupon_id']]);
         $user      = $this->UserModel->getUserdetails($customerID);
-        if($payment_info['amount'] > 0){
-            $getPayment= new RazorPay();
-            $getPayment->pay_var['receipt'] = 'receipt'. uniqid();
+        if ($payment_info['amount'] > 0) {
+            $getPayment = new RazorPay();
+            $getPayment->pay_var['receipt'] = 'receipt' . uniqid();
             $getPayment->pay_var['amount'] = $payment_info['amount'] * 100; //$amount;
             $getPayment->pay_var['user_name'] = $user->customer_name;
             $getPayment->pay_var['email'] = $user->customer_email;
@@ -107,16 +107,17 @@ class Product extends Controller
         $this->view('product/checkout', array_merge($data, $paymentData));
     }
 
-    public function getPayableAmount($bought_products, $params){
+    public function getPayableAmount($bought_products, $params)
+    {
         $payable_amount = 0;
         foreach ($bought_products as $key => $product) {
             $payable_amount += ($product->discount_price * $product->qnty);
         }
         $coupon_id = 0;
         $payable_amount += (($payable_amount < 500) ? 60 : 0);
-        if(!empty($params['coupon_id'])){
+        if (!empty($params['coupon_id'])) {
             $coupon = $this->CouponModel->checkApplyCoupon($params['coupon_id']);
-            if(!empty($coupon)){
+            if (!empty($coupon)) {
                 $payable_amount -= ($payable_amount * ($coupon->discount / 100));
                 $coupon_id = $coupon->id;
             }
@@ -124,7 +125,8 @@ class Product extends Controller
         return ['amount' => $payable_amount, 'coupon_id' => $coupon_id];
     }
 
-    public function saveOrderDetails(){
+    public function saveOrderDetails()
+    {
         // save shipping address
         $shipping_address = [
             'first_name' => $_REQUEST['first_name'],
@@ -156,10 +158,88 @@ class Product extends Controller
         // save detailed products
         $login_user_id = $_SESSION['customer_id'];
         $get_cart      = $this->ProductModel->moveCartToOrderDetails(['user_id' => $login_user_id, 'order_id' => $basic_order]);
-        if($get_cart){
+
+        // send product purchase mail
+        $this->sendProductPurchaseMail($basic_order);
+        if ($get_cart) {
             return redirect('/');
-        }else{
+        } else {
             die('something went wrong');
+        }
+    }
+
+    public function sendProductPurchaseMail(int $order_id)
+    {
+        $user = $this->UserModel->getUserdetails($_SESSION['customer_id']);
+        $productDetails = $this->ProductModel->getPurchasedProductDetails($order_id);
+        $shipping = $this->ProductModel->getShippingDetail($order_id);
+        $payment_id = json_decode($shipping->purchase_json, true);
+
+        $html = '<p>Dear customer, your order has been processed. here are your purchase details</p><br>';
+
+        // shipping address table
+        $html .= '<h2>Shipping & Purchase Details</h2>
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>State</th>
+                            <th>Zip Code</th>
+                            <th>Country</th>
+                            <th>Purchase Id</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+        $html .= '<tr>
+                        <td> ' . $shipping->first_name . ' ' . $shipping->last_name . '</td>
+                        <td>' . $shipping->address . '</td>
+                        <td>' . $shipping->state_id . '</td>
+                        <td>' . $shipping->zip_code . '</td>
+                        <td>' . $shipping->country_id . '</td>
+                        <td>' . $payment_id['razorpay_payment_id'] . '</td>
+                    </tr>';
+        '</tbody>
+        </table><br>';
+
+        // products table
+        $html .= '<h2>Product Details</h2>
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Product Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+        foreach ($productDetails as $product) :
+            $html .= '<tr>
+                    <td> ' . $product->product_name . '</td>
+                    <td>' . $product->discount_price . '</td>
+                    <td>' . $product->quantity . '</td>
+                    <td>' . $product->size_id . '</td>
+                    <td>' . $product->color . '</td>
+                    <td>' . $product->product_code . '</td>
+                    </tr>';
+        endforeach;
+        '</tbody>
+        </table>';
+
+        // make email parameters
+        $sendmail = new sendmail();
+        $sendmail->mail_params['tousers'][0]['email'] = $user->customer_email;
+        $sendmail->mail_params['tousers'][0]['name'] = $user->customer_name;
+        $sendmail->mail_params['subject'] = 'Product Purchased';
+        $sendmail->mail_params['body'] = $html;
+        $mail_sent = $sendmail->sendMail();
+        if (is_bool($mail_sent)) {
+            return true;
+        } else {
+            die(print_r('Could not send email'));
         }
     }
 }

@@ -34,7 +34,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/adminproduct/color" method="post" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/AdminProduct/color" method="post" class="col-sm-12">
                             <div class="col-sm-6 form-group">
                                 <label>Color</label>
                                 <input type="text" class="form-control" name="color" placeholder="Enter Color">

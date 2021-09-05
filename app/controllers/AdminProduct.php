@@ -12,6 +12,8 @@ class AdminProduct extends Controller
 
     $this->ProductModel = $this->model('AdminProductModel');
     $this->NavigationModel = $this->model('NavigationModel');
+    $this->main_menu  = '';
+    $this->sub_menu  = '';
   }
 
   public function index()
@@ -26,7 +28,7 @@ class AdminProduct extends Controller
     ];
 
     // $this->view('inc/navbar', $data);
-    redirect('adminproduct/addproduct');
+    redirect('AdminProduct/addproduct');
   }
 
 
@@ -200,7 +202,7 @@ class AdminProduct extends Controller
 
         if ($isAddValue) {
 
-          redirect('adminproduct/addproduct');
+          redirect('AdminProduct/addproduct');
         } else {
           $data['color_err'] = 'Wrong Information';
 
@@ -651,7 +653,7 @@ class AdminProduct extends Controller
 
         if ($isAddValue) {
 
-          redirect('adminproduct/color');
+          redirect('AdminProduct/color');
         } else {
           $data['color_err'] = 'Wrong Information';
 
@@ -689,12 +691,12 @@ class AdminProduct extends Controller
 
       if ($this->ProductModel->deleteColor($id)) {
         //   flash('post_message', 'Post Removed');
-        redirect('adminproduct/color');
+        redirect('AdminProduct/color');
       } else {
-        die('adminproduct/color');
+        die('AdminProduct/color');
       }
     } else {
-      redirect('adminproduct/color');
+      redirect('AdminProduct/color');
     }
   }
 
@@ -710,14 +712,14 @@ class AdminProduct extends Controller
       if ($this->ProductModel->deleteproductimage($id)) {
         //   flash('post_message', 'Post Removed');
         echo "<script>console.log('1');</script>";
-        redirect('adminproduct/addproductimages');
+        redirect('AdminProduct/addproductimages');
       } else {
         echo "<script>console.log('2');</script>";
         die('adminproduct/addproductimages');
       }
     } else {
       echo "<script>console.log('3');</script>";
-      redirect('adminproduct/addproductimages');
+      redirect('AdminProduct/addproductimages');
     }
     echo "<script>console.log('4');</script>";
   }
@@ -905,7 +907,7 @@ class AdminProduct extends Controller
 
         if ($isAddValue) {
 
-          redirect('adminproduct/adminproductlist');
+          redirect('AdminProduct/adminproductlist');
         } else {
           $data['color_err'] = 'Wrong Information';
 

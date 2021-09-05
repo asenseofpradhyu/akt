@@ -34,7 +34,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/adminproduct/addproductimages" method="post" enctype="multipart/form-data" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/AdminProduct/addproductimages" method="post" enctype="multipart/form-data" class="col-sm-12">
                             <div class="col-sm-6 form-group">
                                 <label>Select Product</label>
                                 <select class="form-control" id="" name="product" size="1">
@@ -145,7 +145,7 @@
                 <h4 class="modal-title" id="myModalLabel">Product Image</h4>
             </div>
             <div class="modal-body">
-                <form action="<?php echo URLROOT; ?>/adminproduct/updateproductimages" method="post" enctype="multipart/form-data" class="product-img-action">
+                <form action="<?php echo URLROOT; ?>/AdminProduct/updateproductimages" method="post" enctype="multipart/form-data" class="product-img-action">
                     <div class="col-sm-6 form-group custom-file">
                         <label>Select Product Images</label>
                         <input type="file" name="file[]" class="custom-file-input" id="file">
@@ -158,7 +158,7 @@
             <div class="modal-footer" style="border:none;">
                 <button type="submit" class="btn btn-primary">Update</button>
                 </form>
-                <form style="display:inline-block;" class="product-img-del" action="<?php echo URLROOT; ?>/adminproduct/deleteproductimage" method="post">
+                <form style="display:inline-block;" class="product-img-del" action="<?php echo URLROOT; ?>/AdminProduct/deleteproductimage" method="post">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
 

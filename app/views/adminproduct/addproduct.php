@@ -34,7 +34,7 @@
                                 <div class="panel panel-bd lobidrag">
                                     
                                     <div class="panel-body">
-                                        <form action="<?php echo URLROOT; ?>/adminproduct/addproduct" method="post" enctype="multipart/form-data" class="col-sm-12" >
+                                        <form action="<?php echo URLROOT; ?>/AdminProduct/addproduct" method="post" enctype="multipart/form-data" class="col-sm-12" >
                                         <div class="col-sm-6 form-group">
                                             <label>Select Main Navigation</label>
                                                 <select class="form-control" id="" name="mainNavSelect" size="1">

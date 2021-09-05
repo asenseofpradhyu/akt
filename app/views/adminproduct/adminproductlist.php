@@ -69,7 +69,7 @@
 
 
                             <tr>
-                            <td><a class="btn btn-primary" href="<?php echo URLROOT; ?>/adminproduct/editproductdetails/<?php echo $nav->product_id; ?>" style="margin-right:10px;"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+                            <td><a class="btn btn-primary" href="<?php echo URLROOT; ?>/AdminProduct/editproductdetails/<?php echo $nav->product_id; ?>" style="margin-right:10px;"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
                                 <td><?php echo $count++; ?></td>
                                 <td><?php echo $nav->product_name; ?></td>
                                 <?php 

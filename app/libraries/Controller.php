@@ -5,6 +5,7 @@
    */
 class Controller
 {
+  protected $data = [];
 
   public function __construct()
   {

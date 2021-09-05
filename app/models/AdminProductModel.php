@@ -73,7 +73,7 @@ class AdminProductModel
 
   public function GetImages()
   {
-    $this->db->query('SELECT product_detail.product_name, color.color, image_data.images, image_data.product_id, image_data.color_id, image_data.image_id FROM image_data INNER JOIN product_detail ON product_detail.product_id = image_Data.product_id INNER JOIN color ON image_data.color_id = color.color_id GROUP BY image_data.product_id, color.color_id');
+    $this->db->query('SELECT product_detail.product_name, color.color, image_data.images, image_data.product_id, image_data.color_id, image_data.image_id FROM image_data INNER JOIN product_detail ON product_detail.product_id = image_data.product_id INNER JOIN color ON image_data.color_id = color.color_id GROUP BY image_data.product_id, color.color_id');
     $results = $this->db->resultSet();
     return $results;
   }

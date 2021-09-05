@@ -164,7 +164,7 @@ class ProductModel
   }
 
   public function getShippingDetail(int $orderId){
-    $query = "SELECT ship.*, p.purchase_json FROM product_orders INNER JOIN shipping_info AS ship ON product_orders.shipping_address_id=ship.id INNER JOIN purchases AS p ON product_orders.purchase_id=p.id WHERE product_orders.id= $orderId";
+    $query = "SELECT ship.*, p.purchase_json, s.name AS state_name, c.name AS country_name FROM product_orders INNER JOIN shipping_info AS ship ON product_orders.shipping_address_id=ship.id INNER JOIN purchases AS p ON product_orders.purchase_id=p.id INNER JOIN states AS s ON ship.state_id=s.id INNER JOIN countries AS c ON ship.country_id=c.id WHERE product_orders.id= $orderId";
     $this->db->query($query);
     return $this->db->single();
   }

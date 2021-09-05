@@ -87,6 +87,7 @@ class Product extends Controller
         $singleimg = $this->ProductModel->getCartProductSingleImg($customerID);
         $payment_info = $this->getPayableAmount($singleimg, ['coupon_id' => $_REQUEST['coupon_id']]);
         $user      = $this->UserModel->getUserdetails($customerID);
+        $countries = $this->UserModel->getCountries();
         if ($payment_info['amount'] > 0) {
             $getPayment = new RazorPay();
             $getPayment->pay_var['receipt'] = 'receipt' . uniqid();
@@ -102,7 +103,8 @@ class Product extends Controller
             'main_menu' => $this->main_menu,
             'sub_menu' => $this->sub_menu,
             'img' => $singleimg,
-            'payment_info' => $payment_info
+            'payment_info' => $payment_info,
+            'countries'     => $countries
         ];
         $this->view('product/checkout', array_merge($data, $paymentData));
     }
@@ -194,9 +196,9 @@ class Product extends Controller
         $html .= '<tr>
                         <td> ' . $shipping->first_name . ' ' . $shipping->last_name . '</td>
                         <td>' . $shipping->address . '</td>
-                        <td>' . $shipping->state_id . '</td>
+                        <td>' . $shipping->state_name . '</td>
                         <td>' . $shipping->zip_code . '</td>
-                        <td>' . $shipping->country_id . '</td>
+                        <td>' . $shipping->country_name . '</td>
                         <td>' . $payment_id['razorpay_payment_id'] . '</td>
                     </tr>';
         '</tbody>

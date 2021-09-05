@@ -29,36 +29,14 @@
                                     <div class="form-group"><input type="text" name="last_name" class="form-control"></div>
                                 </div>
                             </div><label class="text-uppercase">Country:</label>
-                            <div class="form-group select-wrapper"><select class="form-control" name="country_id">
-                                    <option value="1">United States</option>
-                                    <option value="2">Canada</option>
-                                    <option value="3">China</option>
-                                    <option value="4">India</option>
-                                    <option value="5">Italy</option>
-                                    <option value="6">Mexico</option>
+                            <div class="form-group select-wrapper"><select class="form-control" name="country_id"  onchange="getStates(this.value)">
+                                    <?php foreach ($data['countries'] as $country) {
+                                        echo "<option value='$country->id'>" . $country->name . "</option>"; 
+                                    } ?>
                                 </select></div>
                             <div class="row">
                                 <div class="col-sm-6"><label class="text-uppercase">State:</label>
-                                    <div class="form-group select-wrapper"><select class="form-control" name="state_id">
-                                            <option value="1">Alabama</option>
-                                            <option value="2">Alaska</option>
-                                            <option value="3">Arizona</option>
-                                            <option value="4">Arkansas</option>
-                                            <option value="5">California</option>
-                                            <option value="6">Colorado</option>
-                                            <option value="7">Connecticut</option>
-                                            <option value="8">Delaware</option>
-                                            <option value="9">District Of Columbia</option>
-                                            <option value="10">Florida</option>
-                                            <option value="11">Georgia</option>
-                                            <option value="12">Hawaii</option>
-                                            <option value="13">Idaho</option>
-                                            <option value="14">Illinois</option>
-                                            <option value="15">Indiana</option>
-                                            <option value="16">Iowa</option>
-                                            <option value="17">Kansas</option>
-                                            <option value="18">Kentucky</option>
-                                            <option value="19">Louisiana</option>
+                                    <div class="form-group select-wrapper"><select class="form-control" id="state_id" name="state_id">
                                         </select></div>
                                 </div>
                                 <div class="col-sm-6"><label class="text-uppercase">zip/postal code:</label>
@@ -181,6 +159,22 @@
         // return false;
         rzp.open();
         e.preventDefault();
+    }
+
+    function getStates(country_id) {
+        $.ajax({
+            type: "get",
+            url: "<?php echo URLROOT; ?>/Users/getStates",
+            data: {country_id : country_id},
+            dataType: "JSON",
+            success: function (response) {
+                html = '';
+                $.each(response, function (indexInArray, state) { 
+                    html +='<option value='+state.id+'> ' + state.name + '</option>';
+                });
+                $('#state_id').html(html);
+            }
+        });
     }
 </script>
 

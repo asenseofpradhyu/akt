@@ -38,6 +38,7 @@ class AdminProduct extends Controller
     $color = $this->ProductModel->getColors();
     $mainNav = $this->NavigationModel->getMainNav();
     $subNav = $this->NavigationModel->getSubNav();
+    $size   = $this->ProductModel->getSizes();
 
     // Check for POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -258,7 +259,8 @@ class AdminProduct extends Controller
         'style_err' => '',
         'mainNavlist' => $mainNav,
         'subnavlist' => $subNav,
-        'colorlist' => $color
+        'colorlist' => $color,
+        'sizes'     => $size
       ];
 
 
@@ -742,6 +744,7 @@ class AdminProduct extends Controller
     $color = $this->ProductModel->getColors();
     $mainNav = $this->NavigationModel->getMainNav();
     $subNav = $this->NavigationModel->getSubNav();
+    $size   = $this->ProductModel->getSizes();
 
     // Check for POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -965,7 +968,8 @@ class AdminProduct extends Controller
         'style_err' => '',
         'mainNavlist' => $mainNav,
         'subnavlist' => $subNav,
-        'colorlist' => $color
+        'colorlist' => $color,
+        'sizes'     => $size
       ];
 
 

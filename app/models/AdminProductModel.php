@@ -210,5 +210,12 @@ class AdminProductModel
     }
   }
 
+  
+  public function getSizes(){
+    $query = "SELECT * FROM sizes";
+    $this->db->query($query);
+    return $this->db->resultSet();
+  }
+
 
 }

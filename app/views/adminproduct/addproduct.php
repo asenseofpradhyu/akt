@@ -95,9 +95,9 @@
                                                  <label>Select Size</label>
                                                 <select class="form-control" id="" name="size" size="1">
                                                     <option  selected class="test" disabled>Select Size</option>
-                                                    <?php  foreach($data['subnavlist'] as $nav) : ?>
+                                                    <?php  foreach($data['sizes'] as $size) : ?>
                                                     
-                                                    <option value="<?php echo $nav->sub_menu_id?>"><?php echo $nav->sub_menu_name; ?></option>
+                                                    <option value="<?php echo $size->id?>"><?php echo $size->title; ?></option>
 
                                                     <?php endforeach; ?>
 

@@ -84,8 +84,8 @@
 								</div>
 							</div>
 						</div>
+					<?php endforeach; ?>
 				</div>
-			<?php endforeach; ?>
 			</div>
 		</div>
 		<!--End Image Banner-->

@@ -16,6 +16,7 @@ class Product extends Controller
         $this->ProductModel = $this->model('ProductModel');
         $this->UserModel = $this->model('UsersModel');
         $this->CouponModel = $this->model('CouponModel');
+        $this->AdminProductModel = $this->model('AdminProductModel');
     }
 
     public function index()
@@ -37,7 +38,10 @@ class Product extends Controller
             'main_menu' => $this->main_menu,
             'sub_menu' => $this->sub_menu,
             'list' => $list,
-            'totalCount' => $total
+            'totalCount' => $total,
+            'filter_categories' => $this->NavigationModel->getCategoryFilter($id),
+            'colors'            => $this->AdminProductModel->getColors(),
+            'sizes'             => $this->AdminProductModel->getSizes(),
         ];
         $this->view('product/productlist', $data);
     }

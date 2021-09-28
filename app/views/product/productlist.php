@@ -27,26 +27,7 @@
 						</div>
 						<div class="widget-content">
 							<ul class="sidebar_categories">
-								<li class="lvl-1"><a href="#;" class="site-nav">Shervani</a></li>
-								<li class="lvl-2"><a href="category-3columns.html" class="site-nav lvl-2">Indoweston</a></li>
-								<li class="level1 sub-level"><a href="#;" class="site-nav">Kruta Collection</a>
-									<ul class="sublinks" style="display: none;">
-										<li class="level2"><a href="#;" class="site-nav">Designer kurta</a></li>
-										<li class="level2"><a href="#;" class="site-nav">Simple Kurta</a></li>
-										<li class="level2"><a href="#;" class="site-nav">Treditional Kurta</a></li>
-										<li class="level2"><a href="#;" class="site-nav">kurta jacket</a></li>
-										<li class="level2"><a href="#;" class="site-nav">only kurta</a></li>
-										<li class="level2"><a href="#;" class="site-nav">pathanies</a></li>
-										<li class="level2"><a href="#;" class="site-nav">kurta sets</a></li>
-									</ul>
-								</li>
-								<li class="lvl-1"><a href="#;" class="site-nav">jacket & wist coat</a></li>
-								<li class="lvl-1"><a href="#;" class="site-nav">formal suits</a></li>
-								<li class="lvl-1"><a href="#;" class="site-nav">jodhpuri suit</a></li>
-								<li class="lvl-1"><a href="#;" class="site-nav">taxido</a></li>
-								<li class="lvl-1"><a href="#;" class="site-nav">Blazors</a></li>
-
-
+							<?php echo $data['filter_categories']; ?>
 							</ul>
 						</div>
 					</div>
@@ -82,26 +63,12 @@
 							<h2>Color</h2>
 						</div>
 						<ul>
+							<?php foreach ($data['colors'] as $key => $color): ?>
 							<li>
-								<input type="checkbox" value="5" class="common_selector colorID" id="check1">
-								<label for="check1"><span><span></span></span>Allen Vela</label>
+								<input type="checkbox" value="<?php echo $color->color_id; ?>" class="common_selector colorID" id="check1">
+								<label for="check1"><span><span></span></span><?php echo $color->color; ?></label>
 							</li>
-							<li>
-								<input type="checkbox" value="4" id="check3" class="common_selector colorID">
-								<label for="check3"><span><span></span></span>Oxymat</label>
-							</li>
-							<li>
-								<input type="checkbox" value="3" id="check4" class="common_selector colorID">
-								<label for="check4"><span><span></span></span>Yellow</label>
-							</li>
-							<li>
-								<input type="checkbox" value="2" id="check5" class="common_selector colorID">
-								<label for="check5"><span><span></span></span>Pagini</label>
-							</li>
-							<li>
-								<input type="checkbox" value="1" id="check6" class="common_selector colorID">
-								<label for="check6"><span><span></span></span>Red</label>
-							</li>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 					<!--End Size Swatches-->
@@ -111,31 +78,17 @@
 							<h2>Size</h2>
 						</div>
 						<ul>
+							<?php foreach ($data['sizes'] as $key => $size): ?>
 							<li>
-								<input type="checkbox" value="5" id="check1" class="common_selector sizeID">
-								<label for="check1"><span><span></span></span>Allen Vela</label>
+								<input type="checkbox" value="<?php echo $size->id; ?>" id="check1" class="common_selector sizeID">
+								<label for="check1"><span><span></span></span><?php echo $size->title; ?></label>
 							</li>
-							<li>
-								<input type="checkbox" value="4" id="check3" class="common_selector sizeID">
-								<label for="check3"><span><span></span></span>Oxymat</label>
-							</li>
-							<li>
-								<input type="checkbox" value="3" id="check4" class="common_selector sizeID">
-								<label for="check4"><span><span></span></span>Vanelas</label>
-							</li>
-							<li>
-								<input type="checkbox" value="2" id="check5" class="common_selector sizeID">
-								<label for="check5"><span><span></span></span>Pagini</label>
-							</li>
-							<li>
-								<input type="checkbox" value="1" id="check6" class="common_selector sizeID">
-								<label for="check6"><span><span></span></span>Monark</label>
-							</li>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 					<!--End Color Swatches-->
-					<!--Brand-->
-					<div class="sidebar_widget filterBox filter-widget brand-filter">
+					<!--Fabric commented-->
+					<!-- <div class="sidebar_widget filterBox filter-widget brand-filter">
 						<div class="widget-title">
 							<h2>Fabric</h2>
 						</div>
@@ -161,8 +114,8 @@
 								<label for="check6"><span><span></span></span>Monark</label>
 							</li>
 						</ul>
-					</div>
-					<!--End Brand-->
+					</div> -->
+					<!--End Fabric commented-->
 					<!--Popular Products-->
 
 

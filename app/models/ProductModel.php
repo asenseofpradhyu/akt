@@ -174,6 +174,38 @@ class ProductModel
 		return $this->db->single();
 	}
 
+	public function getFilteredProducts(array $parambag){
+		extract($parambag);
+		$sub_links = $this->getNavSearchCategories($category);
+		$sub_ids = [];
+		if (count($sub_links) > 0) {
+			foreach ($sub_links as $key => $sl) {
+				$sub_ids[] = $sl->sub_menu_id;
+			}
+		} else {
+			$sub_ids[] = $category;
+		}
+		$sub_id_string = implode(',', $sub_ids);
+
+		$query = 'SELECT image_data.images, product_detail.product_id, product_detail.product_name, product_detail.discount_price FROM product_detail INNER JOIN image_data ON product_detail.product_id = image_data.product_id WHERE product_detail.sub_menu_id in (' . $sub_id_string . ') ';
+		// print_r($colors);die();
+		if (isset($colors) && !empty($colors)) {
+			$query .= "AND product_detail.color IN(".implode(',', $colors).")";
+		}
+		if (isset($sizes) && !empty($sizes)) {
+			$query .= "AND product_detail.size IN(".implode(',', $sizes).")";
+		}
+		if (isset($maximum_price) && !empty($maximum_price)) {
+			$query .= "AND product_detail.discount_price <= $maximum_price";
+		}
+		if (isset($minimum_price) && !empty($minimum_price)) {
+			$query .= "AND product_detail.discount_price >= $minimum_price";
+		}
+		$query .= ' GROUP BY image_data.product_id';
+		$this->db->query($query);
+		return $this->db->resultSet();
+	}
+
 }
 
 

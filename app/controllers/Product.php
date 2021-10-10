@@ -54,6 +54,7 @@ class Product extends Controller
         $singleimg = $this->ProductModel->getProductSingleImg($id);
         $color = $this->ProductModel->getProductColor($id);
         $similarproducts = $this->ProductModel->getSimilarProducts($detail->sub_menu_id);
+        $size   = $this->AdminProductModel->getSizes();
         $data = [
             'main_menu' => $this->main_menu,
             'sub_menu' => $this->sub_menu,
@@ -61,7 +62,8 @@ class Product extends Controller
             'images' => $images,
             'singleimg' => $singleimg,
             'color' => $color,
-            'similar_product' => $similarproducts
+            'similar_product' => $similarproducts,
+            'sizes' => $size
         ];
 
 
@@ -247,5 +249,17 @@ class Product extends Controller
         } else {
             die(print_r('Could not send email'));
         }
+    }
+
+    public function filterProducts(){
+        $param_array = [
+            'category' => $_REQUEST['subCatid'],
+            'minimum_price' => $_REQUEST['minimum_price'],
+            'maximum_price' => $_REQUEST['maximum_price'],
+            'colors'        => $_REQUEST['color'],
+            'sizes'         => $_REQUEST['sizeID']
+        ];
+        $filter_data = $this->ProductModel->getFilteredProducts($param_array);
+        echo json_encode($filter_data);
     }
 }

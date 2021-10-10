@@ -265,10 +265,10 @@ $(document).ready(function () {
         console.log("Max:- " + maximum_price + " Min:-" + minimum_price + " color:-" + color + " fabric:-" + fabric + " size" + sizeID);
 
         $.ajax({
-            url: `${global_link}/app/ajaxmethod.php`,
+            url: `${global_link}/Product/filterProducts`,
             method: "POST",
             data: {
-                method: action,
+                // method: action,
                 subCatid: subCatid,
                 minimum_price: minimum_price,
                 maximum_price: maximum_price,
@@ -279,9 +279,10 @@ $(document).ready(function () {
             success: function (data) {
 
                 var filterData = data;
-                filterData = filterData.substring(0, filterData.indexOf('<'));
+                // filterData = filterData.substring(0, filterData.indexOf('<'));
                 // $('.filter_data').html(data);
                 var jsonData = JSON.parse(filterData);
+                console.log(jsonData);
                 $("#productListData").empty();
 
                 if (jsonData.length == 0) {
@@ -290,15 +291,15 @@ $(document).ready(function () {
 
                 for (var i = 0; i < jsonData.length; i++) {
 
-                    var dropVal = jsonData[i].split(',');
+                    var dropVal = jsonData[i];
 
                     $("#productListData").append(`
                     <div class="col-6 col-sm-6 col-md-3 col-lg-3 item">
                         <div class="product-image">
-                        <a href="${global_link}/product/productdetail/${dropVal[1]}" class="product-img">
-                        <img class="primary blur-up lazyload" data-src="${global_link}${dropVal[0]}" src="${global_link}${dropVal[0]} alt="${dropVal[2]}" title="${dropVal[2]}">
+                        <a href="${global_link}/product/productdetail/${dropVal.product_id}" class="product-img">
+                        <img class="primary blur-up lazyload" data-src="${global_link}${dropVal.images}" src="${global_link}${dropVal.images} alt="${dropVal.product_name}" title="${dropVal.product_name}">
                         <!-- Hover image -->
-                        <img class="hover blur-up lazyload" data-src="${global_link}${dropVal[0]}" src="${global_link}${dropVal[0]}" alt="${dropVal[2]}" title="${dropVal[2]}">
+                        <img class="hover blur-up lazyload" data-src="${global_link}${dropVal.images}" src="${global_link}${dropVal.images}" alt="${dropVal.product_name}" title="${dropVal.product_name}">
                         </a>
 
                         <!--Product Button-->
@@ -307,7 +308,7 @@ $(document).ready(function () {
                                 <li>
                                     <!--Cart Button-->
                                     <form class="add" action="cart-variant1.html" method="post">
-                                        <button class="btn-icon btn btn-addto-cart wishlist-cart" type="button" tabindex="0" data-id="${dropVal[1]}">
+                                        <button class="btn-icon btn btn-addto-cart wishlist-cart" type="button" tabindex="0" data-id="${dropVal.product_id}">
                                             <i class="icon anm anm-heart-l"></i>
                                             <span class="tooltip-label">Add to Wishlist</span>
                                             Test
@@ -325,12 +326,12 @@ $(document).ready(function () {
                     <div class="product-details text-center">
                         <!-- product name -->
                         <div class="product-name">
-                            <a href="${global_link}/product/productdetail/${dropVal[1]}">${dropVal[2]}</a>
+                            <a href="${global_link}/product/productdetail/${dropVal.product_id}">${dropVal.product_name}</a>
                         </div>
                         <!-- End product name -->
                         <!-- product price -->
                         <div class="product-price">
-                            <span class="price">₹${dropVal[3]}</span>
+                            <span class="price">₹${dropVal.discount_price}</span>
                         </div>
                     </div>
                     <!-- End product details -->

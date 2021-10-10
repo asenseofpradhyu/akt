@@ -103,27 +103,13 @@
                         <form method="post" action="" class="product-form product-form-product-template hidedropdown">
                             <div class="swatch clearfix swatch-1 option2" data-option-index="1">
                                 <div class="product-form__item">
-                                    <label class="label">Size:<span class="required">*</span> <span class="slVariant">XS</span> </label>
-                                    <div data-value="XS" class="swatch-element xs available">
-                                        <input class="swatchInput productSize" id="swatch-1-xs" type="radio" name="productSize" value="1">
-                                        <label class="swatchLbl medium" for="swatch-1-xs" title="XS">XS</label>
-                                    </div>
-                                    <div data-value="S" class="swatch-element s available">
-                                        <input class="swatchInput productSize" id="swatch-1-s" type="radio" name="productSize" value="2">
-                                        <label class="swatchLbl medium" for="swatch-1-s" title="S">S</label>
-                                    </div>
-                                    <div data-value="M" class="swatch-element m available">
-                                        <input class="swatchInput productSize" id="swatch-1-m" type="radio" name="productSize" value="3">
-                                        <label class="swatchLbl medium" for="swatch-1-m" title="M">M</label>
-                                    </div>
-                                    <div data-value="L" class="swatch-element l available">
-                                        <input class="swatchInput productSize" id="swatch-1-l" type="radio" name="productSize" value="4">
-                                        <label class="swatchLbl medium" for="swatch-1-l" title="L">L</label>
-                                    </div>
-                                    <div data-value="XL" class="swatch-element xl available">
-                                        <input class="swatchInput productSize" id="swatch-1-xl" type="radio" name="productSize" value="5">
-                                        <label class="swatchLbl medium" for="swatch-1-xl" title="XL">XL</label>
-                                    </div>
+                                    <!-- <label class="label">Size:<span class="required">*</span> <span class="slVariant">XS</span> </label> -->
+                                    <?php foreach($data['sizes'] AS $key => $size): ?>
+                                        <div data-value="<?php echo $size->size_char; ?>" class="swatch-element xs available <?php echo (($size->id == $data['detail']->size) ? '' : 'disable'); ?>">
+                                            <input class="swatchInput productSize" id="swatch-1-<?php echo $size->size_char; ?>" type="radio" name="productSize" value="<?php echo $size->id; ?>">
+                                            <label class="swatchLbl medium" for="swatch-1-xs" title="<?php echo $size->size_char; ?>"><?php echo $size->size_char; ?></label>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
 
@@ -131,7 +117,7 @@
                                 <div class="product-form__item">
                                     <label class="label">Color:<span class="required">*</span> <span class="slVariant"></span></label>
                                     <?php foreach ($data['color'] as $nav) : ?>
-                                        <div class="swatch-element color">
+                                        <div class="swatch-element color <?php echo (($nav->color_id == $data['detail']->color) ? '' : 'disable'); ?>">
                                             <input class="swatchInput productDetailColor" id="swatch-<?php echo $nav->color; ?>" data-id="" type="radio" name="productColor" value="<?php echo $nav->color_id; ?>">
                                             <label class="swatchLbl" for="swatch-<?php echo $nav->color; ?>" title="<?php echo $nav->color; ?>"><?php echo $nav->color; ?></label>
                                         </div>

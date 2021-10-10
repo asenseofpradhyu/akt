@@ -65,7 +65,7 @@
 						<ul>
 							<?php foreach ($data['colors'] as $key => $color): ?>
 							<li>
-								<input type="checkbox" value="<?php echo $color->color_id; ?>" class="common_selector colorID" id="check1">
+								<input type="checkbox" value="<?php echo $color->color_id; ?>" class="common_selector colorID" id="check1" name="filterColor[]" onchange="filterProducts();">
 								<label for="check1"><span><span></span></span><?php echo $color->color; ?></label>
 							</li>
 							<?php endforeach; ?>
@@ -80,7 +80,7 @@
 						<ul>
 							<?php foreach ($data['sizes'] as $key => $size): ?>
 							<li>
-								<input type="checkbox" value="<?php echo $size->id; ?>" id="check1" class="common_selector sizeID">
+								<input type="checkbox" value="<?php echo $size->id; ?>" id="check1" class="common_selector sizeID" onchange="filterProducts();" name="filterSize[]">
 								<label for="check1"><span><span></span></span><?php echo $size->title; ?></label>
 							</li>
 							<?php endforeach; ?>

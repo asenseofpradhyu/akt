@@ -1,8 +1,8 @@
 <?php
   // DB Params
   define('DB_HOST', 'localhost');
-  define('DB_USER', 'harsh');
-  define('DB_PASS', '');
+  define('DB_USER', 'admin');
+  define('DB_PASS', 'password');
   define('DB_NAME', 'akt');
   define('email_user', 'harsh.azova@gmail.com');
   define('email_pass', 'Harsh7039');

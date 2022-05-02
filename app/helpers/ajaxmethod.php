@@ -5,7 +5,7 @@
 function DbConnect()
 {
 
-    $con = mysqli_connect('localhost', 'harsh', '', 'akt');
+    $con = mysqli_connect('localhost', 'admin', 'password', 'akt');
 
     if (mysqli_connect_errno()) {
         echo 'Failed to Connect to Database ' . mysqli_connect_errno();

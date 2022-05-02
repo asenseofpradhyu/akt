@@ -88,7 +88,7 @@ class AdminProduct extends Controller
         'notinclusive_err' => '',
         'care_err' => '',
         'style_err' => '',
-        'mainNavlist' => $mainNav,
+        'mainNavlist' => $mainNav['results'],
         'subnavlist' => $subNav,
         'colorlist' => $color
       ];
@@ -257,7 +257,7 @@ class AdminProduct extends Controller
         'notinclusive_err' => '',
         'care_err' => '',
         'style_err' => '',
-        'mainNavlist' => $mainNav,
+        'mainNavlist' => $mainNav['results'],
         'subnavlist' => $subNav,
         'colorlist' => $color,
         'sizes'     => $size
@@ -795,7 +795,7 @@ class AdminProduct extends Controller
         'notinclusive_err' => '',
         'care_err' => '',
         'style_err' => '',
-        'mainNavlist' => $mainNav,
+        'mainNavlist' => $mainNav['results'],
         'subnavlist' => $subNav,
         'colorlist' => $color
       ];
@@ -966,7 +966,7 @@ class AdminProduct extends Controller
         'notinclusive_err' => '',
         'care_err' => '',
         'style_err' => '',
-        'mainNavlist' => $mainNav,
+        'mainNavlist' => $mainNav['results'],
         'subnavlist' => $subNav,
         'colorlist' => $color,
         'sizes'     => $size

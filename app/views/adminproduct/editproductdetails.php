@@ -105,7 +105,7 @@
                                                     <option  selected class="test" disabled>Select Size</option>
                                                     <?php  foreach($data['sizes'] as $size) : ?>
                                                     
-                                                    <option value="<?php echo $size->id?>"><?php echo $size->title; ?></option>
+                                                    <option value="<?php echo $size->id?>" <?php if($data['size'] == $size->id){ echo 'selected';} ?>><?php echo $size->title; ?></option>
 
                                                     <?php endforeach; ?>
 
@@ -118,7 +118,7 @@
                                                     <option  selected class="test" disabled>Select Color</option>
                                                     <?php  foreach($data['colorlist'] as $nav) : ?>
                                                     
-                                                    <option value="<?php echo $nav->color_id?>"><?php echo $nav->color; ?></option>
+                                                    <option value="<?php echo $nav->color_id?>" <?php if($data['color'] == $nav->color_id){ echo 'selected';} ?>><?php echo $nav->color; ?></option>
 
                                                     <?php endforeach; ?>
 
@@ -181,7 +181,7 @@
                                             </div>
                                             <div class="col-sm-6 form-group">
                                                 <label>(Details)Style Tip:</label>
-                                                <textarea name="style" class="form-control" value="<?php echo $data['style']; ?>" placeholder="Style Tip" rows="1"></textarea>
+                                                <textarea name="style" class="form-control" value="<?php echo $data['style']; ?>" placeholder="Style Tip" rows="1"><?php echo $data['style']; ?></textarea>
                                                 <span class="invalid-feedback" style="color: red;"><?php echo $data['style_err']; ?></span>
                                             </div>
                                             

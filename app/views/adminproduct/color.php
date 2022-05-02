@@ -65,7 +65,7 @@
                                                 <td><?php echo $count++; ?></td>
                                                 <td><?php echo $nav->color; ?></td>
                                                 <td>
-                                                    <form style="display:inline-block;" action="<?php echo URLROOT; ?>/product/deletecolor/<?php echo $nav->color_id; ?>" method="post">
+                                                    <form style="display:inline-block;" action="<?php echo URLROOT; ?>/AdminProduct/deletecolor/<?php echo $nav->color_id; ?>" method="post">
                                                         <button type="submit" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                     </form>
                                                 </td>

@@ -152,9 +152,11 @@ class NavigationModel
 
 	public function getCategoryFilter(int $current_sub_menu)
 	{
-		$current_menu = 'SELECT main_menu_id FROM sub_menu WHERE sub_menu_id = :curret';
+		$current_menu = 'SELECT main_menu_id FROM sub_menu'.(!empty($current_sub_menu)? ' WHERE sub_menu_id = :curret' : '');
 		$this->db->query($current_menu);
-		$this->db->bind(':curret', $current_sub_menu);
+		if(!empty($current_sub_menu)){
+			$this->db->bind(':curret', $current_sub_menu);
+		}
 		$main_menu = $this->db->single();
 
 		$this->db->query("SELECT * FROM sub_menu WHERE parent_id=0 AND main_menu_id = $main_menu->main_menu_id");

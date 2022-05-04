@@ -70,7 +70,7 @@ class Navigation extends Controller
         $data = [
           'mainnav' => trim($_POST['mainnav']),
           'mainnav_err' => 'Please enter Main Navigation',
-          'mainNavlist' => $mainNav
+          'mainNavlist' => $mainNav['results']
         ];
         $this->view('navigation/mainnavigation', $data);
       }
@@ -82,7 +82,7 @@ class Navigation extends Controller
       $data = [
         'mainnav' => '',
         'mainnav_err' => '',
-        'mainNavlist' => $mainNav
+        'mainNavlist' => $mainNav['results']
       ];
 
       // Load view
@@ -326,7 +326,7 @@ class Navigation extends Controller
         'parentid' => $subNav->parent_id,
         'subnav_err' => '',
         'mainnav_err' => '',
-        'subnavlist' =>  $subNavlist,
+        'subnavlist' =>  $subNavlist['results'],
         'list' => $list
       ];
 

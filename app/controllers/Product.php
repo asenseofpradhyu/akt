@@ -33,7 +33,7 @@ class Product extends Controller
         }
         $list = $this->ProductModel->getProductList($data);
         $total = count($list);
-
+        
         $data = [
             'main_menu' => $this->main_menu,
             'sub_menu' => $this->sub_menu,
@@ -252,13 +252,18 @@ class Product extends Controller
     }
 
     public function filterProducts(){
+        $mixed_params = explode('?', $_REQUEST['subCatid']);
+        $other_params = [];
+        parse_str($mixed_params[1], $other_params);
         $param_array = [
-            'category' => $_REQUEST['subCatid'],
+            'category' => $mixed_params[0],
             'minimum_price' => $_REQUEST['minimum_price'],
             'maximum_price' => $_REQUEST['maximum_price'],
             'colors'        => $_REQUEST['color'],
-            'sizes'         => $_REQUEST['sizeID']
+            'sizes'         => $_REQUEST['sizeID'],
+            'search_query'  => $_REQUEST['search_query']
         ];
+        $param_array = array_merge($param_array, $other_params);
         $filter_data = $this->ProductModel->getFilteredProducts($param_array);
         echo json_encode($filter_data);
     }

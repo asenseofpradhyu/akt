@@ -196,10 +196,13 @@ class ProductModel
 			$query .= "AND product_detail.size IN(".implode(',', $sizes).")";
 		}
 		if (isset($maximum_price) && !empty($maximum_price)) {
-			$query .= "AND product_detail.discount_price <= $maximum_price";
+			$query .= "AND product_detail.discount_price <= $maximum_price ";
 		}
 		if (isset($minimum_price) && !empty($minimum_price)) {
-			$query .= "AND product_detail.discount_price >= $minimum_price";
+			$query .= "AND product_detail.discount_price >= $minimum_price ";
+		}
+		if(isset($search_query) && !empty($search_query)){
+			$query .= "AND product_detail.product_name LIKE '%$search_query%'";
 		}
 		$query .= ' GROUP BY image_data.product_id';
 		$this->db->query($query);

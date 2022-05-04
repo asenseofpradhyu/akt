@@ -61,7 +61,7 @@
                                     <option selected class="test" disabled>Select Sub Navigation Title</option>
                                     <?php foreach ($data['list'] as $nav) : ?>
                                         <?php if ($nav->sub_menu_links == 0) { ?>
-                                            <option value="<?php echo $nav->sub_menu_id ?>"><?php echo $nav->sub_menu_name; ?></option>
+                                            <option value="<?php echo $nav->sub_menu_id ?>" <?php if($data['id'] == $nav->sub_menu_id){echo 'selected';} ?>><?php echo $nav->sub_menu_name; ?></option>
                                         <?php } ?>
                                     <?php endforeach; ?>
 

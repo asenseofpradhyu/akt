@@ -101,13 +101,13 @@
                             <?php echo $data['detail']->product_desc; ?>
                         </div>
                         <form method="post" action="" class="product-form product-form-product-template hidedropdown">
-                            <div class="swatch clearfix swatch-1 option2" data-option-index="1">
+                            <div class="swatch clearfix swatch-0 option1" data-option-index="1">
                                 <div class="product-form__item">
-                                    <!-- <label class="label">Size:<span class="required">*</span> <span class="slVariant">XS</span> </label> -->
+                                    <label class="label">Size:<span class="required">*</span> <span class="slVariant"></span> </label>
                                     <?php foreach($data['sizes'] AS $key => $size): ?>
                                         <div data-value="<?php echo $size->size_char; ?>" class="swatch-element xs available <?php echo (($size->id == $data['detail']->size) ? '' : 'disable'); ?>">
-                                            <input class="swatchInput productSize" id="swatch-1-<?php echo $size->size_char; ?>" type="radio" name="productSize" value="<?php echo $size->id; ?>">
-                                            <label class="swatchLbl medium" for="swatch-1-xs" title="<?php echo $size->size_char; ?>"><?php echo $size->size_char; ?></label>
+                                            <input class="swatchInput productSize" id="swatch-<?php echo $size->size_char; ?>" type="radio" data-id="" name="productSize" value="<?php echo $size->id; ?>">
+                                            <label class="swatchLbl medium" for="swatch-<?php echo $size->size_char; ?>" title="<?php echo $size->size_char; ?>"><?php echo $size->size_char; ?></label>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>

@@ -261,6 +261,7 @@ $(document).ready(function () {
         var fabric = get_filter('fabric');
         var sizeID = get_filter('sizeID');
         var subCatid = catTest;
+        var sortBy = $('#SortBy').val();
 
         console.log("Max:- " + maximum_price + " Min:-" + minimum_price + " color:-" + color + " fabric:-" + fabric + " size" + sizeID);
 
@@ -274,7 +275,8 @@ $(document).ready(function () {
                 maximum_price: maximum_price,
                 color: color,
                 fabric: fabric,
-                sizeID: sizeID
+                sizeID: sizeID,
+                sortBy: sortBy
             },
             success: function (data) {
 
@@ -355,6 +357,11 @@ $(document).ready(function () {
 
 
     $('.common_selector').click(function () {
+        filter_data();
+    });
+
+    $('#SortBy').change(function (e) { 
+        e.preventDefault();
         filter_data();
     });
 

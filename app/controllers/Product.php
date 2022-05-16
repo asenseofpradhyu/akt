@@ -261,7 +261,8 @@ class Product extends Controller
             'maximum_price' => $_REQUEST['maximum_price'],
             'colors'        => $_REQUEST['color'],
             'sizes'         => $_REQUEST['sizeID'],
-            'search_query'  => $_REQUEST['search_query']
+            'search_query'  => $_REQUEST['search_query'],
+            'sort_by'       => $_REQUEST['sortBy'],
         ];
         $param_array = array_merge($param_array, $other_params);
         $filter_data = $this->ProductModel->getFilteredProducts($param_array);

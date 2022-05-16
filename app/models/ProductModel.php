@@ -205,8 +205,34 @@ class ProductModel
 			$query .= "AND product_detail.product_name LIKE '%$search_query%'";
 		}
 		$query .= ' GROUP BY image_data.product_id';
+		if(!empty($sort_by)){
+			$orderBy = $this->getOrderBy($sort_by);
+			$query .= " ORDER BY $orderBy";
+		}
 		$this->db->query($query);
 		return $this->db->resultSet();
+	}
+
+	public function getOrderBy($sort_by){
+		$orderBy = '';
+		switch ($sort_by) {
+			case 'price_low_high':
+				$orderBy = 'product_detail.discount_price ASC';
+				break;
+			case 'price_high_low':
+				$orderBy = 'product_detail.discount_price DESC';
+				break;
+			case 'name_a_z':
+				$orderBy = 'product_detail.product_name ASC';
+				break;
+			case 'name_z_a':
+				$orderBy = 'product_detail.product_name DESC';
+				break;
+			default:
+				$orderBy = 'product_detail.product_name ASC';
+				break;
+		}
+		return $orderBy;
 	}
 
 }

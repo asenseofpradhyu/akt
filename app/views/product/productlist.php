@@ -65,7 +65,7 @@
 						<ul>
 							<?php foreach ($data['colors'] as $key => $color): ?>
 							<li>
-								<input type="checkbox" value="<?php echo $color->color_id; ?>" class="common_selector colorID" id="check1" name="filterColor[]" onchange="filterProducts();">
+								<input type="checkbox" value="<?php echo $color->color_id; ?>" class="common_selector colorID" id="check1" name="filterColor[]">
 								<label for="check1"><span><span></span></span><?php echo $color->color; ?></label>
 							</li>
 							<?php endforeach; ?>
@@ -80,7 +80,7 @@
 						<ul>
 							<?php foreach ($data['sizes'] as $key => $size): ?>
 							<li>
-								<input type="checkbox" value="<?php echo $size->id; ?>" id="check1" class="common_selector sizeID" onchange="filterProducts();" name="filterSize[]">
+								<input type="checkbox" value="<?php echo $size->id; ?>" id="check1" class="common_selector sizeID" name="filterSize[]">
 								<label for="check1"><span><span></span></span><?php echo $size->title; ?></label>
 							</li>
 							<?php endforeach; ?>
@@ -145,14 +145,14 @@
 								<div class="filters-toolbar__item">
 									<label for="SortBy" class="hidden">Sort</label>
 									<select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort">
-										<option value="title-ascending" selected="selected">Sort</option>
-										<option>Best Selling</option>
-										<option>Alphabetically, A-Z</option>
-										<option>Alphabetically, Z-A</option>
-										<option>Price, low to high</option>
-										<option>Price, high to low</option>
-										<option>Date, new to old</option>
-										<option>Date, old to new</option>
+										<option value="" selected="selected">Sort</option>
+										<!-- <option>Best Selling</option> -->
+										<option value="name_a_z">Alphabetically, A-Z</option>
+										<option value="name_z_a">Alphabetically, Z-A</option>
+										<option value="price_low_high">Price, low to high</option>
+										<option value="price_high_low">Price, high to low</option>
+										<!-- <option>Date, new to old</option> -->
+										<!-- <option>Date, old to new</option> -->
 									</select>
 									<input class="collection-header__default-sort" type="hidden" value="manual">
 								</div>

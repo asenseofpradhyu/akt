@@ -371,7 +371,7 @@ $(document).ready(function () {
             min: 0,
             max: 5000,
             values: [0, 100],
-            step: 500,
+            step: 100,
             slide: function (event, ui) {
                 $("#amount").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
                 // filter_data();

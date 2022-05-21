@@ -1,7 +1,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
             <header class="main-header">
-                <a href="index.html" class="logo"> <!-- Logo -->
+                <a href="<?php echo URLROOT; ?>" class="logo"> <!-- Logo -->
                     <span class="logo-mini">
                         <!--<b>A</b>H-admin-->
                         <img src="<?php echo URLROOT; ?>/admin/dist/img/mini-logo.png" alt="">

@@ -134,7 +134,7 @@
     <div class="mobile-nav-wrapper" role="navigation">
       <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
       <ul id="MobileNav" class="mobile-nav">
-        <li class="lvl1"><a href="index.html">Home </a>
+        <li class="lvl1"><a href="<?php echo URLROOT; ?>">Home </a>
         </li>
         <?php $menu = new megamenu(); ?>
         <?php foreach ($data['main_menu']['results'] as $post) : ?>

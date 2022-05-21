@@ -17,6 +17,7 @@
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
   define('URLROOT', 'http://localhost/akt_backend');
+  define('URLROOTADMIN', 'http://localhost/akt_backend/adminmaster/admindashboard');
   // Site Name
   define('SITENAME', 'AKT Fashion Store');
   // File Upload

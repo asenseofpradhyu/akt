@@ -1,14 +1,14 @@
 <!-- Site wrapper -->
 <div class="wrapper">
             <header class="main-header">
-                <a href="<?php echo URLROOT; ?>" class="logo"> <!-- Logo -->
+                <a href="<?php echo URLROOTADMIN; ?>" class="logo"> <!-- Logo -->
                     <span class="logo-mini">
                         <!--<b>A</b>H-admin-->
-                        <img src="<?php echo URLROOT; ?>/admin/dist/img/mini-logo.png" alt="">
+                        <img src="<?php echo URLROOTADMIN; ?>/admin/dist/img/mini-logo.png" alt="">
                     </span>
                     <span class="logo-lg">
                         <!--<b>Admin</b>H-admin-->
-                        <img src="<?php echo URLROOT; ?>/admin/dist/img/logo.png" alt="">
+                        <img src="<?php echo URLROOTADMIN; ?>/admin/dist/img/logo.png" alt="">
                     </span>
                 </a>
                 <!-- Header Navbar -->

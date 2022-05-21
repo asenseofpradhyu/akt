@@ -147,12 +147,20 @@ class Product extends Controller
         $shipping_address_id = $this->UserModel->saveShippingAddress($shipping_address);
 
         // save payment details
-        $payment_json = json_encode(['razorpay_payment_id' => $_REQUEST['razorpay_payment_id'], 'razorpay_signature' => $_REQUEST['razorpay_signature']]);
-        $payment_info = [
-            'purchase_json'  => $payment_json,
-            'purchase_mode'  => 1,
-            'payment_status' => 1
-        ];
+        if(isset($_REQUEST['razorpay_payment_id'])){
+            $payment_json = json_encode(['razorpay_payment_id' => $_REQUEST['razorpay_payment_id'], 'razorpay_signature' => $_REQUEST['razorpay_signature']]);
+            $payment_info = [
+                'purchase_json'  => $payment_json,
+                'purchase_mode'  => 1,
+                'payment_status' => 1
+            ];
+        }else{
+            $payment_info = [
+                'purchase_json'  => '',
+                'purchase_mode'  => 2,
+                'payment_status' => 0
+            ];
+        }
         $payment_details_id = $this->UserModel->savePaymentDetails($payment_info);
 
         // save order

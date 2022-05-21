@@ -107,9 +107,12 @@
                     <?php
                     if ($data['payment_info']['amount'] > 0) :
                     ?>
-                        <button id="rzp-button1">Pay with Razorpay</button>
+                        <button id="rzp-button1" class="btn btn-primary">Pay with Razorpay</button>
                         <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
                         <input type="hidden" name="razorpay_signature" id="razorpay_signature">
+                        OR
+                        <button type="submit" class="btn btn-primary">Cash On Delivery</button>
+
                     <?php else : ?>
                         <input type="submit" name="Purchase">
                     <?php endif; ?>

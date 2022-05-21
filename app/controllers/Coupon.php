@@ -55,7 +55,7 @@ class Coupon extends Controller{
     public function checkApplyCoupon(){
         $coupon_code = $_REQUEST['coupon_code'];
         $cou = $this->CouponModel->checkApplyCoupon($coupon_code);
-        echo json_encode(['status' => 1, 'coupon_code' => (array)$cou]);
+        echo json_encode(['status' => (!empty($cou)? 1 : 0), 'coupon_code' => (array)$cou]);
         // return $cou;
     }
 }

@@ -461,7 +461,7 @@ $('#apply_coupon').click(function (e) {
         data: { method: 'applyCouponCode', coupon_code: coupon_code },
         dataType: 'JSON',
         success: function (response) {
-            if(response.coupon_code != []){
+            if(response.status == 1){
                 $('#coupon_id').val(response.coupon_code.coupon_code);
                 alert('coupon applied');
             }else{

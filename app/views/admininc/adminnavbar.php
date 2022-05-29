@@ -1,15 +1,15 @@
 <!-- Site wrapper -->
 <div class="wrapper">
     <header class="main-header">
-        <a href="<?php echo URLROOTADMIN; ?>" class="logo">
+        <a href="<?php echo URLROOT; ?>" class="logo">
             <!-- Logo -->
             <span class="logo-mini">
                 <!--<b>A</b>H-admin-->
-                <img src="<?php echo URLROOTADMIN; ?>/admin/dist/img/mini-logo.png" alt="">
+                <img src="<?php echo URLROOT; ?>/admin/dist/img/mini-logo.png" alt="">
             </span>
             <span class="logo-lg">
                 <!--<b>Admin</b>H-admin-->
-                <img src="<?php echo URLROOTADMIN; ?>/admin/dist/img/logo.png" alt="">
+                <img src="<?php echo URLROOT; ?>/admin/dist/img/logo.png" alt="">
             </span>
         </a>
         <!-- Header Navbar -->
@@ -105,7 +105,7 @@
                                     <li>
                                         <a href="#" class="border-gray">
                                             <div class="pull-left">
-                                                <img src="assets/dist/img/avatar4.png" class="img-thumbnail" alt="User Image">
+                                                <img src="<?php echo URLROOT; ?>/admin/dist/img/avatar4.png" class="img-thumbnail" alt="User Image">
                                             </div>
                                             <h4>Tanjil</h4>
                                             <p>Lorem Ipsum is simply dummy text of...
@@ -129,7 +129,7 @@
                                     <li>
                                         <a href="#" class="border-gray">
                                             <div class="pull-left">
-                                                <img src="assets/dist/img/avatar4.png" class="img-thumbnail" alt="User Image">
+                                                <img src="<?php echo URLROOT; ?>/admin/dist/img/avatar4.png" class="img-thumbnail" alt="User Image">
                                             </div>
                                             <h4>Shawon</h4>
                                             <p>Lorem Ipsum is simply dummy text of...
@@ -271,7 +271,7 @@
                     <li class="dropdown dropdown-user admin-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <div class="user-image">
-                                <img src="assets/dist/img/avatar4.png" class="img-circle" height="40" width="40" alt="User Image">
+                                <img src="<?php echo URLROOT; ?>/admin/dist/img/avatar4.png" class="img-circle" height="40" width="40" alt="User Image">
                             </div>
                         </a>
                         <ul class="dropdown-menu">

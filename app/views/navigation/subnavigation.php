@@ -45,7 +45,6 @@
                                 <select class="form-control" id="exampleSelect1" name="mainNavSelect" size="1">
                                     <option selected class="test" disabled>Select Main Navigation</option>
                                     <?php foreach ($data['mainNavlist'] as $nav) : ?>
-
                                         <option value="<?php echo $nav->main_menu_id ?>"><?php echo $nav->main_menu_name; ?></option>
 
                                     <?php endforeach; ?>
@@ -59,7 +58,7 @@
                                     <option selected class="test" disabled>Select Sub Navigation Title</option>
                                     <?php foreach ($data['subNavlist'] as $nav) : ?>
                                         <?php if ($nav->sub_menu_links == 0) { ?>
-                                            <option value="<?php echo $nav->sub_menu_id ?>"><?php echo $nav->sub_menu_name; ?></option>
+                                            <option value="<?php echo $nav->sub_menu_id ?>" data-parent_id="<?php echo $nav->main_menu_id; ?>"><?php echo $nav->sub_menu_name; ?></option>
                                         <?php } ?>
                                     <?php endforeach; ?>
 

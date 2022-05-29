@@ -232,7 +232,7 @@ class Navigation extends Controller
         'mainNavSelect' => '',
         'subnav_err' => '',
         'mainNavSelect_err' => '',
-        'mainNavlist' => $mainNav,
+        'mainNavlist' => $mainNav['results'],
         'subNavlist' => $subNav
       ];
 

@@ -44,7 +44,7 @@
                     <ul class="nav flex-column dashboard-list" role="tablist">
                         <li><a class="nav-link active" data-toggle="tab" href="#Profile">Profile</a></li>
                          <li><a class="nav-link" data-toggle="tab" href="#address"> My Addresses</a></li>
-                        <li><a class="nav-link" data-toggle="tab" href="#orders">My Orders</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#orders" onclick="displayUserOrders();">My Orders</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#wishlist">My Wishlist</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#changepasssword">Change Password</a></li>
                     </ul>
@@ -107,25 +107,15 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
-                                            <th>Downloads remaining</th>
-                                            <th>Expires</th>
-                                            <th>Download</th>
+                                            <th>Product Name</th>
+                                            <th>Color</th>
+                                            <th>Size</th>
+                                            <th>Quantity</th>
+                                            <th>Purchase date</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Minerva Dress black</td>
-                                            <td>July 22, 2018</td>
-                                            <td>never</td>
-                                            <td><a class="view" href="#">Click Here To Download Your File</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sueded Cotton Pant in Khaki</td>
-                                            <td>Dec 17, 2018</td>
-                                            <td>never</td>
-                                            <td><a class="view" href="#">Click Here To Download Your File</a></td>
-                                        </tr>
+                                    <tbody id="userOrdersRows">
+                                        
                                     </tbody>
                                 </table>
                             </div>

@@ -480,3 +480,31 @@ function removeCrap(data) {
 function submitCartForm(){
     $('#cartForm').submit();
 }
+
+function displayUserOrders(){
+    $.ajax({
+        type: "get",
+        url: `${global_link}/orders/getUserOrders`,
+        data: {},
+        dataType: "JSON",
+        success: function (response) {
+            html ='';
+            if(response.orders.length > 0){
+                $.each(response.orders, function (index, value) {
+                    html += `<tr>
+                    <td>${value.product_name}</td>
+                    <td>${value.color}</td>
+                    <td>${value.size}</td>
+                    <td>${value.quantity}</td>
+                    <td>${value.purchase_date}</td>
+                    </tr>`;
+                });
+            }else{
+                html += `<tr>
+                <td colspan="5">No Order Found</td>
+                </tr>`;
+            }
+            $('#userOrdersRows').html(html);
+        }
+    });
+}

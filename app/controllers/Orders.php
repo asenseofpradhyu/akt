@@ -14,6 +14,13 @@ class Orders extends Controller
     $this->ProductModel  = $this->model('ProductModel');
   }
 
+  public function checkAdmin()
+  {
+    if (!isLoggedInAdmin()) {
+      redirect('adminmaster/adminlogin');
+    }
+  }
+
   public function purchasereport()
   {
     $user_id = $_SESSION['user_id'];
@@ -38,6 +45,17 @@ class Orders extends Controller
       'orders' => $data,
     ]);
     echo $return_data;
+  }
+
+  public function getAllPurchaseReport()
+  {
+    $this->checkAdmin();
+    $data = [
+      'title' => 'Purchase Report',
+      'navigation' => $this->NavigationModel->getMainNav(),
+      'purchasereport' => $this->AdminProductModel->getPurchaseReportAllUsers(),
+    ];
+    return $this->view('adminorders/purchasereports', $data);
   }
 
 }

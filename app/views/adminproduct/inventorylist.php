@@ -36,8 +36,8 @@
                             <?php foreach ($data['inventorylist'] as $product) : ?>
                                 <tr>
                                     <td>
-                                        <a href="<?php echo URLROOT; ?>/adminproduct/editInventory/<?php echo $product->id; ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                        <a href="<?php echo URLROOT; ?>/adminproduct/deleteInventory/<?php echo $product->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <a href="<?php echo URLROOT; ?>/AdminProduct/modifyInventoryView/<?php echo $product->id; ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="<?php echo URLROOT; ?>/AdminProduct/deleteInventory/<?php echo $product->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                     <td><?php echo $product->color; ?></td>
                                     <td><?php echo $product->size; ?></td>

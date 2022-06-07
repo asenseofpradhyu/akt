@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="stock">Stock</label>
-                                <input type="text" name="stock" id="stock" class="form-control" value="<?php echo (!empty($inventory)) ? $data['inventory']->stock : ''; ?>">
+                                <input type="text" name="stock" id="stock" class="form-control" value="<?php echo (!empty($data['inventory'])) ? $data['inventory']->stock : ''; ?>">
                             </div>
                         </div>
                         <div class="row text-center">

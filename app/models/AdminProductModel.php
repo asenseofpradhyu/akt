@@ -221,4 +221,68 @@ class AdminProductModel
 		$this->db->query($getOrders);
 		return $this->db->resultSet();
 	}
+
+	public function getInventoryList($product_id)
+	{
+		$this->db->query('SELECT c.color, s.title AS size, phi.id, phi.stock FROM product_has_inventory as phi INNER JOIN color AS c ON phi.color_id=c.color_id INNER JOIN sizes AS s ON phi.size_id=s.id WHERE product_id = :product_id AND is_deleted = 0');
+		// Bind value
+		$this->db->bind(':product_id', $product_id);
+		$row = $this->db->resultSet();
+		return $row;
+	}
+
+	public function updateInventory(array $inventoryModel){
+		$query = 'UPDATE product_has_inventory SET stock = :stock, color_id = :color_id, size_id = :size_id WHERE id = :id';
+		$this->db->query($query);
+		// Bind values
+		$this->db->bind(':stock', $inventoryModel['stock']);
+		$this->db->bind(':color_id', $inventoryModel['color_id']);
+		$this->db->bind(':size_id', $inventoryModel['size_id']);
+		$this->db->bind(':id', $inventoryModel['id']);
+		// Execute
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function addInventory(array $inventoryModel){
+		$query = 'INSERT INTO product_has_inventory (product_id, stock, color_id, size_id) VALUES (:product_id, :stock, :color_id, :size_id)';
+		$this->db->query($query);
+		// Bind values
+		$this->db->bind(':product_id', $inventoryModel['product_id']);
+		$this->db->bind(':stock', $inventoryModel['stock']);
+		$this->db->bind(':color_id', $inventoryModel['color_id']);
+		$this->db->bind(':size_id', $inventoryModel['size_id']);
+		// Execute
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function deleteInventory($id)
+	{
+		$query = 'UPDATE product_has_inventory SET is_deleted = 1 WHERE id = :id';
+		$this->db->query($query);
+		// Bind values
+		$this->db->bind(':id', $id);
+		// Execute
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function getInventoryById($id = 0)
+	{
+		$query = 'SELECT * FROM product_has_inventory WHERE id = :id';
+		$this->db->query($query);
+		// Bind value
+		$this->db->bind(':id', $id);
+		return $this->db->single();
+	}
 }

@@ -33,7 +33,7 @@
                 <table id="dataTable" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                        <th>Action</th>
+                            <th>Action</th>
                             <th>No.</th>
                             <th>Product Name</th>
                             <th>Product Description</th>
@@ -43,8 +43,8 @@
                             <th>Discount Price</th>
                             <th>Product Code</th>
                             <th>Stock</th>
-                            <th>Size</th>
-                            <th>Color</th>
+                            <!-- <th>Size</th> -->
+                            <!-- <th>Color</th> -->
                             <th>Length</th>
                             <th>Garment</th>
                             <th>Neck</th>
@@ -69,17 +69,21 @@
 
 
                             <tr>
-                            <td><a class="btn btn-primary" href="<?php echo URLROOT; ?>/AdminProduct/editproductdetails/<?php echo $nav->product_id; ?>" style="margin-right:10px;"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+                                <td>
+                                    <a class="btn btn-primary btn-xs" href="<?php echo URLROOT; ?>/AdminProduct/editproductdetails/<?php echo $nav->product_id; ?>" style="margin-right:10px;"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+
+                                    <a class="btn btn-primary btn-xs" href="<?php echo URLROOT; ?>/AdminProduct/inventoryList/<?php echo $nav->product_id; ?>" style="margin-right:10px;"><i class="fa fa-list" aria-hidden="true"></i></a>
+                                </td>
                                 <td><?php echo $count++; ?></td>
                                 <td><?php echo $nav->product_name; ?></td>
-                                <?php 
-                                
+                                <?php
+
                                 if (strlen($nav->product_desc) > 50) {
-                                    $trimstring = substr($nav->product_desc, 0, 50). '...';
-                                    } else {
+                                    $trimstring = substr($nav->product_desc, 0, 50) . '...';
+                                } else {
                                     $trimstring = $nav->product_desc;
-                                    }
-                                    
+                                }
+
                                 ?>
                                 <td><?php echo $trimstring; ?></td>
                                 <td><?php echo $nav->main_menu_name; ?></td>
@@ -88,15 +92,7 @@
                                 <td><?php echo $nav->discount_price; ?></td>
                                 <td><?php echo $nav->product_code; ?></td>
                                 <td><?php echo $nav->stock; ?></td>
-                                <td><?php echo $nav->size; ?></td>
 
-                                <td>
-                                <?php
-                                    $resultData = $GetImages->colorNameByProductId($nav->product_id);
-                                    foreach ($resultData as $img) : ?>
-                                        <?php echo $img['color']; ?>,        
-                                    <?php endforeach; ?>
-                                    </td>
                                 <td><?php echo $nav->length; ?></td>
                                 <td><?php echo $nav->garment; ?></td>
                                 <td><?php echo $nav->neck; ?></td>
@@ -108,14 +104,14 @@
                                 <td><?php echo $nav->care; ?></td>
                                 <td><?php echo $nav->style_tip; ?></td>
                                 <td>
-                                    
-                                    <?php 
-                                        if($nav->status == 1){
-                                            echo "Yes";
-                                        } else {
-                                            echo "No";
-                                        }
-                                     ?>
+
+                                    <?php
+                                    if ($nav->status == 1) {
+                                        echo "Yes";
+                                    } else {
+                                        echo "No";
+                                    }
+                                    ?>
                                 </td>
                                 <td><?php echo $nav->created_date; ?></td>
                             </tr>

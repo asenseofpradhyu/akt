@@ -727,19 +727,21 @@ class AdminProduct extends Controller
   }
 
   // ProductImage List
-  public function adminproductlist(){
+  public function adminproductlist()
+  {
 
     $listData = $this->ProductModel->getproductListData();
 
-    $data=[
-      'list'=> $listData
+    $data = [
+      'list' => $listData
     ];
 
-    
+
     $this->view('adminproduct/adminproductlist', $data);
   }
 
-  public function editproductdetails($id){
+  public function editproductdetails($id)
+  {
 
     $color = $this->ProductModel->getColors();
     $mainNav = $this->NavigationModel->getMainNav();
@@ -976,6 +978,61 @@ class AdminProduct extends Controller
       // Load view
       $this->view('adminproduct/editproductdetails', $data);
     }
+  }
 
+  public function inventoryList($id)
+  {
+    $data = [
+      'product_id' => $id,
+      'inventorylist' => $this->ProductModel->getInventoryList($id)
+    ];
+
+    $this->view('adminproduct/inventorylist', $data);
+  }
+
+  public function editInventory($id = 0)
+  {
+    $updateArray = [
+      'id' => $id,
+      'product_id' => $_POST['product_id'],
+      'size_id' => $_POST['size_id'],
+      'color_id' => $_POST['color_id'],
+      'stock' => $_POST['stock']
+    ];
+    $this->ProductModel->updateInventory($updateArray);
+
+    redirect('AdminProduct/inventoryList/' . $_POST['product_id']);
+  }
+
+  public function addInventory()
+  {
+    $data = [
+      'product_id' => $_POST['product_id'],
+      'size_id' => $_POST['size_id'],
+      'color_id' => $_POST['color_id'],
+      'stock' => $_POST['stock']
+    ];
+    $this->ProductModel->addInventory($data);
+
+    redirect('AdminProduct/inventoryList/' . $_POST['product_id']);
+  }
+
+  public function deletedInventory($id = 0)
+  {
+    $this->ProductModel->deleteInventory($id);
+
+    redirect('AdminProduct/inventoryList/' . $_POST['product_id']);
+  }
+
+  public function modifyInventoryView($id=0)
+  {
+    $data = [
+      'inventory' => $this->ProductModel->getInventoryById($id),
+      'colors'   => $this->ProductModel->getColors(),
+      'sizes'    => $this->ProductModel->getSizes(),
+      'product_id' => $id
+    ];
+
+    $this->view('adminproduct/modifyinventory', $data);
   }
 }

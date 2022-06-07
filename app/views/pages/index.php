@@ -1144,7 +1144,9 @@
 								<img class="primary blur-up lazyload" data-src="<?php echo URLROOT . $images[0]['image']; ?>" src="<?php echo URLROOT . $images[0]['image']; ?>" alt="" title="">
 								<!-- End image -->
 								<!-- Hover image -->
+								<?php if(isset($images[1]['image'])): ?>
 								<img class="hover blur-up lazyload" data-src="<?php echo URLROOT . $images[1]['image']; ?>" src="<?php echo URLROOT . $images[1]['image']; ?>" alt="" title="">
+								<?php endif; ?>
 								<!-- End hover image -->
 
 							</a>

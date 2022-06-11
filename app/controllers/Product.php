@@ -55,6 +55,8 @@ class Product extends Controller
         $color = $this->ProductModel->getProductColor($id);
         $similarproducts = $this->ProductModel->getSimilarProducts($detail->sub_menu_id);
         $size   = $this->AdminProductModel->getSizes();
+        $available_sizes = $this->AdminProductModel->getAvailableSizes($id);
+
         $data = [
             'main_menu' => $this->main_menu,
             'sub_menu' => $this->sub_menu,
@@ -63,7 +65,8 @@ class Product extends Controller
             'singleimg' => $singleimg,
             'color' => $color,
             'similar_product' => $similarproducts,
-            'sizes' => $size
+            'sizes' => $size,
+            'available_sizes' => $available_sizes,
         ];
 
 
@@ -275,5 +278,12 @@ class Product extends Controller
         $param_array = array_merge($param_array, $other_params);
         $filter_data = $this->ProductModel->getFilteredProducts($param_array);
         echo json_encode($filter_data);
+    }
+
+    public function getColorsAndStock(){
+        $product_id = $_REQUEST['product_id'];
+        $size_id = $_REQUEST['size_id'];
+        $colors = $this->AdminProductModel->getColorsAndStock($product_id, $size_id);
+        echo json_encode(['colors' => $colors]);
     }
 }

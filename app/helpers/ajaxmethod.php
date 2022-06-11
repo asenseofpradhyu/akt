@@ -143,7 +143,7 @@ function addToCart()
         $size = $_POST['size'];
         $dataRespond = 0;
 
-        $count = "SELECT count(product_id) as cnt FROM cart WHERE product_id = $product_id AND customer_id = $customer_id";
+        $count = "SELECT count(product_id) as cnt FROM cart WHERE product_id = $product_id AND customer_id = $customer_id AND color_id = '$color' AND size_id = '$size'";
         $resultData = mysqli_query($con, $count);
         $countid = mysqli_fetch_assoc($resultData);
 
@@ -178,9 +178,9 @@ function deleteCart()
 
     if (isLoggedInCustomer()) {
 
-        $product_id = $_POST['product_id'];
+        $cart_id = $_POST['cart_id'];
 
-        $sql = "DELETE FROM cart WHERE product_id = $product_id";
+        $sql = "DELETE FROM cart WHERE cart_id = $cart_id";
 
         if (mysqli_query($con, $sql)) {
             $dataRespond = 1;

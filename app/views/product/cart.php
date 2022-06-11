@@ -56,7 +56,7 @@
                                         <div><span class="money"><?php echo ($nav->discount_price * $nav->qnty); ?></span></div>
                                     </td>
                                     <td class="text-center small--hide">
-                                        <a href="javascript:void(0);" class="btn btn--secondary cart__remove" data-id="<?php echo $nav->product_id; ?>" title="Remove item"><i class="icon icon anm anm-times-l"></i></a>
+                                        <a href="javascript:void(0);" class="btn btn--secondary cart__remove" data-id="<?php echo $nav->product_id; ?>" data-cart_id="<?php echo $nav->cart_id; ?>" title="Remove item"><i class="icon icon anm anm-times-l"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

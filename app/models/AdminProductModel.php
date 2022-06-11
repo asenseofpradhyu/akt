@@ -285,4 +285,23 @@ class AdminProductModel
 		$this->db->bind(':id', $id);
 		return $this->db->single();
 	}
+
+	public function getAvailableSizes(int $id)
+	{
+		$query = "SELECT s.* FROM product_has_inventory AS phi INNER JOIN sizes AS s ON phi.size_id=s.id WHERE product_id = :id AND is_deleted = 0 GROUP BY size_id";
+		$this->db->query($query);
+		// Bind value
+		$this->db->bind(':id', $id);
+		return $this->db->resultSet();
+	}
+
+	public function getColorsAndStock($product_id, $size_id)
+	{
+		$query = "SELECT c.*, phi.stock FROM product_has_inventory AS phi INNER JOIN color AS c ON phi.color_id=c.color_id WHERE product_id = :product_id AND size_id = :size_id AND is_deleted = 0";
+		$this->db->query($query);
+		// Bind value
+		$this->db->bind(':product_id', $product_id);
+		$this->db->bind(':size_id', $size_id);
+		return $this->db->resultSet();
+	}
 }

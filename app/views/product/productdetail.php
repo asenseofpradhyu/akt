@@ -75,11 +75,7 @@
                                 <div class="product-sku">AKT: <span class="variant-sku"><?php echo $data['detail']->product_code; ?></span></div>
                                 <div class="product-stock">
                                     <span class="instock ">
-                                        <?php if ($data['detail']->stock > 5) {
-                                            echo "In Stock";
-                                        } else {
-                                            echo "Hurry !! Only " . $data['detail']->stock . " Left";
-                                        } ?>
+                                        
                                     </span>
                                     <span class="outstock">
                                         <?php if ($data['detail']->stock == 0) {
@@ -104,9 +100,9 @@
                             <div class="swatch clearfix swatch-0 option1" data-option-index="1">
                                 <div class="product-form__item">
                                     <label class="label">Size:<span class="required">*</span> <span class="slVariant"></span> </label>
-                                    <?php foreach($data['sizes'] AS $key => $size): ?>
-                                        <div data-value="<?php echo $size->size_char; ?>" class="swatch-element xs available <?php echo (($size->id == $data['detail']->size) ? '' : 'disable'); ?>">
-                                            <input class="swatchInput productSize" id="swatch-<?php echo $size->size_char; ?>" type="radio" data-id="" name="productSize" value="<?php echo $size->id; ?>">
+                                    <?php foreach($data['available_sizes'] AS $key => $size): ?>
+                                        <div data-value="<?php echo $size->size_char; ?>" class="swatch-element xs available">
+                                            <input class="swatchInput productSize" id="swatch-<?php echo $size->size_char; ?>" onclick="getColorsAndStock(this)" type="radio" data-id="<?php echo $size->id; ?>" name="productSize" value="<?php echo $size->id; ?>">
                                             <label class="swatchLbl medium" for="swatch-<?php echo $size->size_char; ?>" title="<?php echo $size->size_char; ?>"><?php echo $size->size_char; ?></label>
                                         </div>
                                     <?php endforeach; ?>
@@ -116,12 +112,7 @@
                             <div class="swatch clearfix swatch-0 option1">
                                 <div class="product-form__item">
                                     <label class="label">Color:<span class="required">*</span> <span class="slVariant"></span></label>
-                                    <?php foreach ($data['color'] as $nav) : ?>
-                                        <div class="swatch-element color <?php echo (($nav->color_id == $data['detail']->color) ? '' : 'disable'); ?>">
-                                            <input class="swatchInput productDetailColor" id="swatch-<?php echo $nav->color; ?>" data-id="" type="radio" name="productColor" value="<?php echo $nav->color_id; ?>">
-                                            <label class="swatchLbl" for="swatch-<?php echo $nav->color; ?>" title="<?php echo $nav->color; ?>"><?php echo $nav->color; ?></label>
-                                        </div>
-                                    <?php endforeach; ?>
+                                    <div id="color_div"></div>
                                 </div>
                             </div>
 

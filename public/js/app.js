@@ -158,13 +158,13 @@ $(document).ready(function () {
 
     // Delete Cart AJAX
     $(".cart__remove").on('click', function (evt) {
-        var product_id = $(this).attr('data-id');
+        var cart_id = $(this).attr('data-cart_id');
         var $this = $(this);
 
         $.ajax({
             type: "POST",
             url: `${global_link}/app/ajaxmethod.php`,
-            data: ({ product_id: product_id, method: 'deleteCart' }),
+            data: ({ cart_id: cart_id, method: 'deleteCart' }),
             success: function (data) {
 
                 var filterData = data
@@ -507,4 +507,48 @@ function displayUserOrders(){
             $('#userOrdersRows').html(html);
         }
     });
+}
+
+function getColorsAndStock(element) {
+    let size_id = $(element).data('id');
+    let product_id = $('#product_id').val();
+    $.ajax({
+        type: "POST",
+        url: `${global_link}/product/getColorsAndStock`,
+        data: { product_id: product_id, size_id: size_id },
+        dataType: "JSON",
+        success: function (response) {
+            html = '';
+            if (response.colors.length > 0) {
+                $.each(response.colors, function (index, value) {
+                    html += `<div class="swatch-element color"  onclick="updateStockInfo(this)" data-stock="${value.stock}">
+                        <input class="swatchInput productDetailColor" id="swatch-${value.color}" data-id="" type="radio" name="productColor" value="${value.color_id}">
+                        <label class="swatchLbl" for="swatch-${value.color}" title="${value.color}">${value.color}</label>
+                    </div>`;
+                });
+            } else {
+                html += `<div class="swatch-element color">
+                <input class="swatchInput productDetailColor" id="swatch-no-data" data-id="" type="radio" name="productColor" value="">
+                <label class="swatchLbl" for="swatch-no-data" title="no-data">No colors Found</label>
+            </div>`;
+            }
+            $('#color_div').html(html);
+            html = '';
+        }
+    });
+}
+
+function updateStockInfo(element) {
+    $('.instock').text('');
+    $('.outstock').text('');
+    let stock = $(element).data('stock');
+    if (stock > 0) {
+        if(stock > 5){
+            $('.instock').text('In Stock');
+        }else{
+            $('.instock').text('Hurry!! Only '+stock+' left in stock');
+        }
+    } else {
+        $('.outstock').text('Out of Stock');
+    }
 }

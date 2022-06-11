@@ -85,4 +85,8 @@
     public function rowCount(){
       return $this->stmt->rowCount();
     }
+
+    public function lastQuery(){
+      return $this->stmt->queryString;
+    }
   }

@@ -134,7 +134,6 @@
                                         <th class="product-price text-center alt-font">Images</th>
                                         <th class="product-name alt-font">Product</th>
                                         <th class="product-price text-center alt-font">Price</th>
-                                        <th class="stock-status text-center alt-font">Stock</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -145,15 +144,7 @@
                                             <a href="#"><img src="<?php echo URLROOT; ?><?php echo $nav->images; ?>" alt="" title=""></a>
                                         </td>
                                         <td class="product-name"><h4 class="no-margin"><a href="<?php echo URLROOT;?>/product/productdetail/<?php echo $nav->product_id; ?>"><?php echo $nav->product_name; ?></a></h4></td>
-                                        <td class="product-price text-center"><span class="amount"><?php echo "₹".$nav->discount_price; ?></span></td>
-                                        <td class="stock text-center">
-                                        <?php if($nav->stock != 0){
-                                            echo '<span class="in-stock">In Stock</span>';
-                                        } else {
-                                            echo '<span class="out-stock">Out Of Stock</span>';
-                                        }
-                                            ?>
-                                        </td>
+                                        <td class="product-price text-center"><span class="amount"><?php echo "₹ &nbsp;".$nav->discount_price; ?></span></td>
                                     </tr>
                                     <?php endforeach; ?>
                                     

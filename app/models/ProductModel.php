@@ -187,13 +187,14 @@ class ProductModel
 		}
 		$sub_id_string = implode(',', $sub_ids);
 
-		$query = 'SELECT image_data.images, product_detail.product_id, product_detail.product_name, product_detail.discount_price FROM product_detail INNER JOIN image_data ON product_detail.product_id = image_data.product_id WHERE product_detail.sub_menu_id in (' . $sub_id_string . ') ';
+		$query = 'SELECT image_data.images, product_detail.product_id, product_detail.product_name, product_detail.discount_price FROM product_detail INNER JOIN image_data ON product_detail.product_id = image_data.product_id
+		INNER JOIN product_has_inventory AS phi ON product_detail.product_id = phi.product_id AND phi.is_deleted=0 WHERE product_detail.sub_menu_id in (' . $sub_id_string . ') ';
 		// print_r($colors);die();
 		if (isset($colors) && !empty($colors)) {
-			$query .= "AND product_detail.color IN(".implode(',', $colors).")";
+			$query .= "AND phi.color_id IN(".implode(',', $colors).")";
 		}
 		if (isset($sizes) && !empty($sizes)) {
-			$query .= "AND product_detail.size IN(".implode(',', $sizes).")";
+			$query .= "AND phi.size_id IN(".implode(',', $sizes).")";
 		}
 		if (isset($maximum_price) && !empty($maximum_price)) {
 			$query .= "AND product_detail.discount_price <= $maximum_price ";

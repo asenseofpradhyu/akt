@@ -43,7 +43,7 @@
                                             <a href="#"><?php echo $nav->product_name; ?></a>
                                         </div>
                                         <div class="cart__meta-text">
-                                            Color: <?php echo $nav->color ?><br>Size: Small<br>
+                                            Color: <?php echo $nav->color ?><br>Size: <?php echo $nav->size_title; ?><br>
                                         </div>
                                     </td>
                                     <td class="cart__price-wrapper cart-flex-item">

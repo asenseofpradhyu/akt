@@ -12,8 +12,8 @@ class AdminProductModel
 	public function AddProduct($data)
 	{
 
-		$this->db->query('INSERT INTO product_detail (product_name, product_desc, main_menu_id, sub_menu_id, total_price, discount_price, product_code, stock, size, color, length, garment, neck, fabric, occasion, design_type, d_inclusive, d_not_inclusive, care, style_tip, status, created_date)  
-                                            VALUES(:product_name, :product_desc, :main_menu_id, :sub_menu_id, :total_price, :discount_price, :product_code, :stock, :size, :color, :length, :garment, :neck, :fabric, :occasion, :design_type, :d_inclusive, :d_not_inclusive, :care, :style_tip, 1, NOW())');
+		$this->db->query('INSERT INTO product_detail (product_name, product_desc, main_menu_id, sub_menu_id, total_price, discount_price, product_code,, length, garment, neck, fabric, occasion, design_type, d_inclusive, d_not_inclusive, care, style_tip, status, created_date)  
+                                            VALUES(:product_name, :product_desc, :main_menu_id, :sub_menu_id, :total_price, :discount_price, :product_code, :length, :garment, :neck, :fabric, :occasion, :design_type, :d_inclusive, :d_not_inclusive, :care, :style_tip, 1, NOW())');
 		// Bind values
 		$this->db->bind(':product_name', $data['productname']);
 		$this->db->bind(':product_desc', $data['productdesc']);
@@ -22,9 +22,6 @@ class AdminProductModel
 		$this->db->bind(':total_price', $data['totalprice']);
 		$this->db->bind(':discount_price', $data['discountprice']);
 		$this->db->bind(':product_code', $data['code']);
-		$this->db->bind(':stock', $data['stock']);
-		$this->db->bind(':size', $data['size']);
-		$this->db->bind(':color', $data['color']);
 		$this->db->bind(':length', $data['length']);
 		$this->db->bind(':garment', $data['garment']);
 		$this->db->bind(':neck', $data['neck']);
@@ -175,7 +172,7 @@ class AdminProductModel
 	public function UpdateProduct($data)
 	{
 
-		$this->db->query('UPDATE product_detail SET product_name = :product_name, product_desc = :product_desc, main_menu_id = :main_menu_id, sub_menu_id = :sub_menu_id, total_price = :total_price, discount_price = :discount_price, product_code = :product_code, stock = :stock, size = :size, color = :color, length = :length, garment = :garment, neck = :neck, fabric = :fabric, occasion = :occasion, design_type = :design_type, d_inclusive = :d_inclusive, d_not_inclusive = :d_not_inclusive, care = :care, style_tip = :style_tip WHERE product_id = :id');
+		$this->db->query('UPDATE product_detail SET product_name = :product_name, product_desc = :product_desc, main_menu_id = :main_menu_id, sub_menu_id = :sub_menu_id, total_price = :total_price, discount_price = :discount_price, product_code = :product_code, length = :length, garment = :garment, neck = :neck, fabric = :fabric, occasion = :occasion, design_type = :design_type, d_inclusive = :d_inclusive, d_not_inclusive = :d_not_inclusive, care = :care, style_tip = :style_tip WHERE product_id = :id');
 		// Bind values
 		$this->db->bind(':product_name', $data['productname']);
 		$this->db->bind(':product_desc', $data['productdesc']);
@@ -184,9 +181,6 @@ class AdminProductModel
 		$this->db->bind(':total_price', $data['totalprice']);
 		$this->db->bind(':discount_price', $data['discountprice']);
 		$this->db->bind(':product_code', $data['code']);
-		$this->db->bind(':stock', $data['stock']);
-		$this->db->bind(':size', $data['size']);
-		$this->db->bind(':color', $data['color']);
 		$this->db->bind(':length', $data['length']);
 		$this->db->bind(':garment', $data['garment']);
 		$this->db->bind(':neck', $data['neck']);

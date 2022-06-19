@@ -86,43 +86,6 @@
                                                 <input type="text" class="form-control" name="code" placeholder="Enter Product Code">
                                                 <span class="invalid-feedback" style="color: red;"><?php echo $data['code_err']; ?></span>
                                             </div>
-                                            <div class="col-sm-6 form-group">
-                                                <label>Stock</label>
-                                                <input type="text" class="form-control" name="stock" placeholder="Enter Total Stock">
-                                                <span class="invalid-feedback" style="color: red;"><?php echo $data['stock_err']; ?></span>
-                                            </div>
-                                            <div class="col-sm-6 form-group">
-                                                 <label>Select Size</label>
-                                                <select class="form-control" id="" name="size" size="1">
-                                                    <option  selected class="test" disabled>Select Size</option>
-                                                    <?php  foreach($data['sizes'] as $size) : ?>
-                                                    
-                                                    <option value="<?php echo $size->id?>"><?php echo $size->title; ?></option>
-
-                                                    <?php endforeach; ?>
-
-                                                </select>
-                                                <span class="invalid-feedback" style="color: red;"><?php echo $data['size_err']; ?></span>
-                                             </div>
-                                             <div class="col-sm-6 form-group">
-                                                 <label>Select Color</label>
-                                                <select class="form-control" id="" name="color" size="1">
-                                                    <option  selected class="test" disabled>Select Color</option>
-                                                    <?php  foreach($data['colorlist'] as $nav) : ?>
-                                                    
-                                                    <option value="<?php echo $nav->color_id?>"><?php echo $nav->color; ?></option>
-
-                                                    <?php endforeach; ?>
-
-                                                </select>
-                                                <span class="invalid-feedback" style="color: red;"><?php echo $data['color_err']; ?></span>
-                                             </div>
-                                             <!-- <div class="col-sm-6 form-group">
-                                                <label>Stock</label>
-                                                <input type="text" class="form-control" name="stock" placeholder="Enter Product Stock">
-                                                <span class="invalid-feedback" style="color: red;"><?php //echo $data['color_err']; ?></span>
-                                            </div> -->
-                                            
                                             <h3 style="padding-left:15px;">Product Feature</h3>
                                             <div class="col-sm-6 form-group">
                                                 <label>Feature Length</label>

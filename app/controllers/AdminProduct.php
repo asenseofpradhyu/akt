@@ -55,9 +55,6 @@ class AdminProduct extends Controller
         'totalprice' => trim($_POST['totalprice']),
         'discountprice' => trim($_POST['discountprice']),
         'code' => trim($_POST['code']),
-        'stock' => trim($_POST['stock']),
-        'color' => isset($_POST['color']),
-        'size' => isset($_POST['size']),
         'length' => trim($_POST['length']),
         'garment' => trim($_POST['garment']),
         'neck' => trim($_POST['neck']),
@@ -122,18 +119,6 @@ class AdminProduct extends Controller
         $data['code_err'] = 'Please Enter Product Code';
       }
 
-      if (empty($data['stock'])) {
-        $data['stock_err'] = 'Please Enter Product Stock';
-      }
-
-      if (empty($data['size'])) {
-        $data['size_err'] = 'Please Enter Product size';
-      }
-
-      if (empty($data['color'])) {
-        $data['color_err'] = 'Please enter Color';
-      }
-
       if (empty($data['length'])) {
         $data['length_err'] = 'Please enter Feature Length';
       }
@@ -182,10 +167,6 @@ class AdminProduct extends Controller
         empty($data['productdesc_err']) &&
         empty($data['totalprice_err']) &&
         empty($data['discountprice_err']) &&
-        empty($data['code_err']) &&
-        empty($data['stock_err']) &&
-        empty($data['size_err']) &&
-        empty($data['color_err']) &&
         empty($data['length_err']) &&
         empty($data['garment_err']) &&
         empty($data['neck_err']) &&
@@ -224,9 +205,6 @@ class AdminProduct extends Controller
         'totalprice' => '',
         'discountprice' => '',
         'code' => '',
-        'stock' => '',
-        'color' => '',
-        'size' => '',
         'length' => '',
         'garment' => '',
         'neck' => '',
@@ -764,9 +742,6 @@ class AdminProduct extends Controller
         'totalprice' => trim($_POST['totalprice']),
         'discountprice' => trim($_POST['discountprice']),
         'code' => trim($_POST['code']),
-        'stock' => trim($_POST['stock']),
-        'color' => isset($_POST['color']),
-        'size' => isset($_POST['size']),
         'length' => trim($_POST['length']),
         'garment' => trim($_POST['garment']),
         'neck' => trim($_POST['neck']),
@@ -831,18 +806,6 @@ class AdminProduct extends Controller
         $data['code_err'] = 'Please Enter Product Code';
       }
 
-      if (empty($data['stock'])) {
-        $data['stock_err'] = 'Please Enter Product Stock';
-      }
-
-      if (empty($data['size'])) {
-        $data['size_err'] = 'Please Enter Product size';
-      }
-
-      if (empty($data['color'])) {
-        $data['color_err'] = 'Please enter Color';
-      }
-
       if (empty($data['length'])) {
         $data['length_err'] = 'Please enter Feature Length';
       }
@@ -892,9 +855,6 @@ class AdminProduct extends Controller
         empty($data['totalprice_err']) &&
         empty($data['discountprice_err']) &&
         empty($data['code_err']) &&
-        empty($data['stock_err']) &&
-        empty($data['size_err']) &&
-        empty($data['color_err']) &&
         empty($data['length_err']) &&
         empty($data['garment_err']) &&
         empty($data['neck_err']) &&
@@ -935,9 +895,6 @@ class AdminProduct extends Controller
         'totalprice' => $detail->total_price,
         'discountprice' => $detail->discount_price,
         'code' => $detail->product_code,
-        'stock' => $detail->stock,
-        'color' => $detail->color,
-        'size' => $detail->size,
         'length' => $detail->length,
         'garment' => $detail->garment,
         'neck' => $detail->neck,

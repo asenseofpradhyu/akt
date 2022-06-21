@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 05, 2022 at 10:58 PM
+-- Generation Time: Jun 21, 2022 at 07:51 PM
 -- Server version: 10.3.34-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -56,6 +56,13 @@ CREATE TABLE `cart` (
   `size_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `product_id`, `qnty`, `color_id`, `size_id`, `customer_id`) VALUES
+(20, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -48550,7 +48557,9 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `size_i
 (2, 11, 2, 1, 3, 1),
 (3, 18, 2, 1, 4, 1),
 (4, 18, 2, 1, 3, 1),
-(5, 19, 1, 1, 1, 1);
+(5, 19, 1, 1, 1, 1),
+(6, 20, 1, 1, 2, 1),
+(7, 21, 1, 1, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -48567,9 +48576,6 @@ CREATE TABLE `product_detail` (
   `total_price` int(11) NOT NULL,
   `discount_price` int(11) NOT NULL,
   `product_code` varchar(255) NOT NULL,
-  `stock` int(11) NOT NULL,
-  `size` varchar(255) NOT NULL,
-  `color` varchar(255) NOT NULL,
   `length` varchar(255) NOT NULL,
   `garment` varchar(255) NOT NULL,
   `neck` varchar(255) NOT NULL,
@@ -48588,10 +48594,36 @@ CREATE TABLE `product_detail` (
 -- Dumping data for table `product_detail`
 --
 
-INSERT INTO `product_detail` (`product_id`, `product_name`, `product_desc`, `main_menu_id`, `sub_menu_id`, `total_price`, `discount_price`, `product_code`, `stock`, `size`, `color`, `length`, `garment`, `neck`, `fabric`, `occasion`, `design_type`, `d_inclusive`, `d_not_inclusive`, `care`, `style_tip`, `status`, `created_date`) VALUES
-(1, 'Kurta1', '1Kurta Test', 1, 2, 1, 1, '1', 0, '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 't', 1, ''),
-(2, 'Tshirt', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su', 1, 2, 250, 200, '12345', 3, '1', '1', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, ''),
-(3, 'Harsh Azova', 'uadbcds', 2, 1, 345, 200, 'addddddsc', 788, '1', '1', '200', '2', '2', '3', '2', '3', '2', '2', '2', 'oh shit', 1, '2022-05-02 22:01:22');
+INSERT INTO `product_detail` (`product_id`, `product_name`, `product_desc`, `main_menu_id`, `sub_menu_id`, `total_price`, `discount_price`, `product_code`, `length`, `garment`, `neck`, `fabric`, `occasion`, `design_type`, `d_inclusive`, `d_not_inclusive`, `care`, `style_tip`, `status`, `created_date`) VALUES
+(1, 'Kurta1', '1Kurta Test', 1, 2, 1, 1, '12', '1', '1', '1', '1', '1', '1', '1', '1', '1', 't', 1, ''),
+(2, 'Tshirt', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su', 1, 2, 250, 200, '12345', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, ''),
+(3, 'Harsh Azova', 'uadbcds', 2, 1, 345, 200, 'addddddsc', '200', '2', '2', '3', '2', '3', '2', '2', '2', 'oh shit', 1, '2022-05-02 22:01:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_has_inventory`
+--
+
+CREATE TABLE `product_has_inventory` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `color_id` int(11) NOT NULL,
+  `size_id` int(11) NOT NULL,
+  `stock` int(11) NOT NULL DEFAULT 0,
+  `is_deleted` tinyint(4) NOT NULL DEFAULT 0 COMMENT '1- deleted'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_has_inventory`
+--
+
+INSERT INTO `product_has_inventory` (`id`, `product_id`, `color_id`, `size_id`, `stock`, `is_deleted`) VALUES
+(1, 1, 1, 1, 12, 0),
+(2, 1, 3, 2, 12, 0),
+(3, 1, 1, 2, 1, 0),
+(4, 1, 3, 4, 5, 0),
+(5, 4, 3, 4, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -48630,7 +48662,9 @@ INSERT INTO `product_orders` (`id`, `user_id`, `shipping_address_id`, `purchase_
 (16, 1, 25, 16, '2021-09-05 12:16:25'),
 (17, 1, 26, 17, '2021-09-05 12:19:12'),
 (18, 1, 27, 18, '2022-04-30 13:28:21'),
-(19, 1, 28, 19, '2022-05-21 08:16:57');
+(19, 1, 28, 19, '2022-05-21 08:16:57'),
+(20, 1, 29, 20, '2022-06-11 16:35:22'),
+(21, 1, 30, 21, '2022-06-11 16:45:34');
 
 -- --------------------------------------------------------
 
@@ -48668,7 +48702,9 @@ INSERT INTO `purchases` (`id`, `purchase_json`, `purchase_mode`, `payment_status
 (16, '{\"razorpay_payment_id\":\"pay_HtmRZmDDpM0zca\",\"razorpay_signature\":\"c00934fce36b7bed0ca918732c2774dee17113493b4b5a318bd178ff748cadf4\"}', 1, 1),
 (17, '{\"razorpay_payment_id\":\"pay_HtmUVsWFD1skHE\",\"razorpay_signature\":\"61e30c280a99f4ebdee9a48c660f9d5aa24c1461a0da8aa4ac020b982d9ef6b1\"}', 1, 1),
 (18, '{\"razorpay_payment_id\":\"pay_JPa3tp5ayhE1iu\",\"razorpay_signature\":\"116190de32f04808842fbe08959e7e4e732401d24fefbf4462ae7f1611576d80\"}', 1, 1),
-(19, '{\"razorpay_payment_id\":\"\",\"razorpay_signature\":\"\"}', 2, 1);
+(19, '{\"razorpay_payment_id\":\"\",\"razorpay_signature\":\"\"}', 2, 1),
+(20, '{\"razorpay_payment_id\":\"\",\"razorpay_signature\":\"\"}', 1, 1),
+(21, '{\"razorpay_payment_id\":\"\",\"razorpay_signature\":\"\"}', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -48718,7 +48754,9 @@ INSERT INTO `shipping_info` (`id`, `first_name`, `last_name`, `country_id`, `sta
 (25, 'Harsh', 'Bhatt', 1, 1, 383001, '2 NAVDEEP SOCIETY'),
 (26, 'Harsh', 'Bhatt', 1, 1, 383001, '2 NAVDEEP SOCIETY'),
 (27, 'Harsh', 'Bhatt', 101, 12, 383001, 'A1 society'),
-(28, 'Harsh', 'Bhatt', 101, 12, 383001, 'A1 society');
+(28, 'Harsh', 'Bhatt', 101, 12, 383001, 'A1 society'),
+(29, 'Harsh', 'Bhatt', 101, 12, 382481, 'A-401 stavan parishray'),
+(30, 'Harsh', 'Bhatt', 101, 12, 382481, 'A-401 stavan parishray');
 
 -- --------------------------------------------------------
 
@@ -52768,6 +52806,13 @@ CREATE TABLE `wishlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`wishlist_id`, `product_id`, `customer_id`) VALUES
+(24, 1, 1);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -52889,6 +52934,14 @@ ALTER TABLE `product_detail`
   ADD KEY `main_menu_id` (`main_menu_id`);
 
 --
+-- Indexes for table `product_has_inventory`
+--
+ALTER TABLE `product_has_inventory`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `size_id` (`size_id`,`color_id`);
+
+--
 -- Indexes for table `product_orders`
 --
 ALTER TABLE `product_orders`
@@ -52960,7 +53013,7 @@ ALTER TABLE `admin_account`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -53044,7 +53097,7 @@ ALTER TABLE `misc_links`
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product_detail`
@@ -53053,22 +53106,28 @@ ALTER TABLE `product_detail`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `product_has_inventory`
+--
+ALTER TABLE `product_has_inventory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `product_orders`
 --
 ALTER TABLE `product_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `shipping_info`
 --
 ALTER TABLE `shipping_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `sizes`
@@ -53092,7 +53151,7 @@ ALTER TABLE `testimonial`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

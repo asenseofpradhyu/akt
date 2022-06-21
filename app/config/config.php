@@ -4,8 +4,8 @@
   define('DB_USER', 'admin');
   define('DB_PASS', 'password');
   define('DB_NAME', 'akt');
-  define('email_user', 'harsh.azova@gmail.com');
-  define('email_pass', 'Harsh7039');
+  define('email_user', 'akt@akt.welovecoders.com');
+  define('email_pass', 'Akt@2022');
   define('email_host', 'smtp.gmail.com');
   define('email_from', 'bhattharsh610@gmail.com');
   define('email_name', 'Store');

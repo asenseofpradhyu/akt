@@ -35,7 +35,7 @@
 
                     <div class="panel-body">
                     <?php if(isset($data['coupon'])){ $coupon = $data['coupon']; } ?>
-                        <form action="<?php echo URLROOT; ?>/coupon/saveCoupon" method="post">
+                        <form action="<?php echo URLROOT; ?>/coupon/saveCoupon" method="post" name="saveCouponForm" id="saveCouponForm" novalidate>
                         <input type="hidden" name="id" id="coupon_id" value="<?php echo (isset($coupon))? $coupon->id : 0; ?>">
                             <div class="col-sm-6 form-group">
                                 <label>Coupon Code</label>
@@ -60,3 +60,35 @@
     </section>
 </div>
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#saveCouponForm').validate({
+            rules: {
+                coupon_code: {
+                    required: true
+                },
+                discount: {
+                    required: true
+                },
+                no_of_attempts: {
+                    required: true
+                }
+            },
+            messages: {
+                coupon_code: {
+                    required: "Please enter coupon code"
+                },
+                discount: {
+                    required: "Please enter discount amount"
+                },
+                no_of_attempts: {
+                    required: "Please enter no of attempts"
+                }
+            },
+            // errors in the form
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            }
+        });
+    });
+</script>

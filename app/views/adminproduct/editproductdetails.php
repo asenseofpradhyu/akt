@@ -34,7 +34,7 @@
                                 <div class="panel panel-bd lobidrag">
                                     
                                     <div class="panel-body">
-                                        <form action="<?php echo URLROOT; ?>/AdminProduct/editproductdetails/<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data" class="col-sm-12" >
+                                        <form action="<?php echo URLROOT; ?>/AdminProduct/editproductdetails/<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data" class="col-sm-12" name="editAdminProduct" id="editAdminProduct">
                                         <div class="col-sm-6 form-group">
                                             <label>Select Main Navigation</label>
                                                 <select class="form-control" id="" name="mainNavSelect" size="1">
@@ -165,3 +165,156 @@
                  </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#editAdminProduct').validate({
+            rules: {
+                mainNavSelect: {
+                    required: true
+                },
+                subNavSelect: {
+                    required: true
+                },
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                description: {
+                    required: true,
+                    minlength: 3
+                },
+                productprice: {
+                    required: true,
+                    // minlength: 3
+                },
+                totalprice: {
+                    required: true,
+                    // minlength: 3
+                },
+                discountprice: {
+                    required: true,
+                    // minlength: 3
+                },
+                code: {
+                    required: true,
+                    minlength: 3
+                },
+                length: {
+                    required: true,
+                    minlength: 3
+                },
+                garment: {
+                    required: true,
+                    minlength: 3
+                },
+                neck: {
+                    required: true,
+                    minlength: 3
+                },
+                fabric: {
+                    required: true,
+                    minlength: 3
+                },
+                occasion: {
+                    required: true,
+                    minlength: 3
+                },
+                design: {
+                    required: true,
+                    minlength: 3
+                },
+                inclusive: {
+                    required: true,
+                    minlength: 3
+                },
+                notinclusive: {
+                    required: true,
+                    minlength: 3
+                },
+                care: {
+                    required: true,
+                    minlength: 3
+                },
+                style: {
+                    required: true,
+                    minlength: 3
+                }
+            },
+            messages: {
+                mainNavSelect: {
+                    required: "Please select a main navigation"
+                },
+                subNavSelect: {
+                    required: "Please select a sub navigation"
+                },
+                name: {
+                    required: "Please enter a product name",
+                    minlength: "Your product name must consist of at least 3 characters"
+                },
+                description: {
+                    required: "Please enter a product description",
+                    minlength: "Your product description must consist of at least 3 characters"
+                },
+                productprice: {
+                    required: "Please enter a product price",
+                    minlength: "Your product price must consist of at least 3 characters"
+                },
+                totalprice: {
+                    required: "Please enter a total price",
+                    minlength: "Your total price must consist of at least 3 characters"
+                },
+                discountprice: {
+                    required: "Please enter a discount price",
+                    minlength: "Your discount price must consist of at least 3 characters"
+                },
+                code: {
+                    required: "Please enter a code",
+                    minlength: "Your code must consist of at least 3 characters"
+                },
+                length: {
+                    required: "Please enter a length",
+                    minlength: "Your length must consist of at least 3 characters"
+                },
+                garment: {
+                    required: "Please enter a garment",
+                    minlength: "Your garment must consist of at least 3 characters"
+                },
+                neck: {
+                    required: "Please enter a neck",
+                    minlength: "Your neck must consist of at least 3 characters"
+                },
+                fabric: {
+                    required: "Please enter a fabric",
+                    minlength: "Your fabric must consist of at least 3 characters"
+                },
+                occasion: {
+                    required: "Please enter a occasion",
+                    minlength: "Your occasion must consist of at least 3 characters"
+                },
+                design: {
+                    required: "Please enter a design",
+                    minlength: "Your design must consist of at least 3 characters"
+                },
+                inclusive: {
+                    required: "Please enter a inclusive",
+                    minlength: "Your inclusive must consist of at least 3 characters"
+                },
+                notinclusive: {
+                    required: "Please enter a notinclusive",
+                    minlength: "Your notinclusive must consist of at least 3 characters"
+                },
+                care: {
+                    required: "Please enter a care",
+                    minlength: "Your care must consist of at least 3 characters"
+                },
+                style: {
+                    required: "Please enter a style",
+                    minlength: "Your style must consist of at least 3 characters"
+                }
+            },
+            errorplacement: function (error, element) {
+                error.insertAfter(element);
+            }
+        });
+    });
+</script>

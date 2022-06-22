@@ -74,4 +74,8 @@ class Pages extends Controller
 
     $this->view('pages/contact', $data);
   }
+  public function emptyPage()
+  {
+    $this->view('pages/empty');
+  }
 }

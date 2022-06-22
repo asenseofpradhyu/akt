@@ -14,7 +14,9 @@
 
       $urlcheck = $this->getUrl();
       $url = !empty($urlcheck) ? $urlcheck : $urlcheck = ['Pages', 'index', []];
-      
+      if(in_array('ajaxmethod.php', $url)){
+        $this->currentMethod = 'emptyPage';
+      }
 
       // Look in controllers for first value
       if(file_exists('../app/controllers/' . ucwords($url[0]). '.php')){

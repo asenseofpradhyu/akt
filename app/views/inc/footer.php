@@ -151,6 +151,7 @@
 <script src="<?php echo URLROOT; ?>/js/plugins.js"></script>
 <script src="<?php echo URLROOT; ?>/js/main.js"></script>
 <script src="<?php echo URLROOT; ?>/js/app.js"></script>
+<script src="<?php echo URLROOT; ?>/js/jquery.validate.min.js" type="text/javascript"></script>
 <script>
   // function changeSearchUrl(id) {
   //   $('#rgsearch-category').attr('action', global_link + '/product/productlist/' + id);

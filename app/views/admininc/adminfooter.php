@@ -47,6 +47,7 @@
 <script src="<?php echo URLROOT; ?>/admin/plugins/datamaps/topojson.min.js" type="text/javascript"></script>
 <script src="<?php echo URLROOT; ?>/admin/plugins/datamaps/datamaps.all.min.js" type="text/javascript"></script>
 <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo URLROOT; ?>/js/jquery.validate.min.js" type="text/javascript"></script>
 
 <!-- End Page Lavel Plugins
         =====================================================================-->

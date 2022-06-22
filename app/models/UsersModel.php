@@ -153,7 +153,7 @@ class UsersModel
         if ($results) {
 
             foreach ($results as $nav) {
-                $this->db->query('SELECT wishlist.product_id, product_detail.product_name, product_detail.discount_price, product_detail.stock, image_data.images FROM image_data INNER JOIN product_detail ON product_detail.product_id = image_data.product_id INNER JOIN wishlist ON wishlist.product_id = image_data.product_id WHERE wishlist.customer_id = :id GROUP BY image_data.product_id HAVING COUNT(image_data.product_id) > 1');
+                $this->db->query('SELECT wishlist.product_id, product_detail.product_name, product_detail.discount_price, image_data.images FROM image_data INNER JOIN product_detail ON product_detail.product_id = image_data.product_id INNER JOIN wishlist ON wishlist.product_id = image_data.product_id WHERE wishlist.customer_id = :id GROUP BY image_data.product_id HAVING COUNT(image_data.product_id) > 1');
                 // Bind values
                 $this->db->bind(':id', $id);
             }

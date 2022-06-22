@@ -85,7 +85,7 @@ class ProductModel
 
 		$con = DbConnect();
 
-		$this->db->query('SELECT cart.*, product_detail.product_name, product_detail.discount_price, product_detail.stock, color.color, image_data.images, sizes.title AS size_title FROM image_data INNER JOIN product_detail ON product_detail.product_id = image_data.product_id INNER JOIN cart ON cart.product_id = image_data.product_id INNER JOIN color ON color.color_id = cart.color_id INNER JOIN sizes ON cart.size_id = sizes.id WHERE cart.customer_id = :id GROUP BY cart.product_id, cart.color_id, cart.size_id');
+		$this->db->query('SELECT cart.*, product_detail.product_name, product_detail.discount_price, color.color, image_data.images, sizes.title AS size_title FROM image_data INNER JOIN product_detail ON product_detail.product_id = image_data.product_id INNER JOIN cart ON cart.product_id = image_data.product_id INNER JOIN color ON color.color_id = cart.color_id INNER JOIN sizes ON cart.size_id = sizes.id WHERE cart.customer_id = :id GROUP BY cart.product_id, cart.color_id, cart.size_id');
 
 		$this->db->bind(':id', $id);
 		$row = $this->db->resultSet();
@@ -155,7 +155,7 @@ class ProductModel
 
 	public function replaceQuantityProduct(object &$cart_detail)
 	{
-		$this->db->query("UPDATE product_detail SET stock=stock- " . $cart_detail->qnty . " WHERE product_id=" . $cart_detail->product_id);
+		$this->db->query("UPDATE product_has_inventory SET stock=stock- " . $cart_detail->qnty . " WHERE product_id=" . $cart_detail->product_id . " AND color_id=" . $cart_detail->color_id . " AND size_id=" . $cart_detail->size_id);
 		$this->db->execute();
 		return true;
 	}

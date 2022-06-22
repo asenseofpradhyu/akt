@@ -6,9 +6,10 @@
   define('DB_NAME', 'akt');
   define('email_user', 'akt@akt.welovecoders.com');
   define('email_pass', 'Akt@2022');
-  define('email_host', 'smtp.gmail.com');
-  define('email_from', 'bhattharsh610@gmail.com');
+  define('email_host', 'smtp.hostinger.com');
+  define('email_from', 'akt@akt.welovecoders.com');
   define('email_name', 'Store');
+  define('smtp_port', 465);
   define('paymant_key', 'rzp_test_pWatlGrVoprBeK');
   define('payment_secret', '9wOuImMIU6O4dw3K9m9FosI2');
   define('currency', 'INR');

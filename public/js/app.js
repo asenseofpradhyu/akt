@@ -1,6 +1,6 @@
 
-// var global_link = 'http://localhost/akt_backend';
-var global_link = window.location.hostname;
+var global_link = 'http://akt.welovecoders.com/';
+// var global_link = window.location.hostname;
 $(document).ready(function () {
 
     var catTest;

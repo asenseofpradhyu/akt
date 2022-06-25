@@ -1,5 +1,6 @@
 
-var global_link = 'http://localhost/akt_backend';
+// var global_link = 'http://localhost/akt_backend';
+var global_link = window.location.href;
 $(document).ready(function () {
 
     var catTest;

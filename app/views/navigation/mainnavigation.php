@@ -34,7 +34,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/navigation/mainnavigation" method="post" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/navigation/mainnavigation" id="addMainNavigation" name="addMainNavigation" method="post" class="col-sm-12" novalidate>
                             <div class="col-sm-6 form-group">
                                 <label>Main Navigation</label>
                                 <input type="text" class="form-control" name="mainnav" placeholder="Enter Main Navigation" value="<?php echo $data['mainnav']; ?>">
@@ -91,3 +91,23 @@
 </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#addMainNavigation').validate({
+            rules : {
+                mainnav: {
+                    required : true
+                },
+            },
+            messages: {
+                mainnav: {
+                    required: "Please enter Main Navigation"
+                },
+            },
+            // errors in the form
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            }
+        })
+    });
+</script>

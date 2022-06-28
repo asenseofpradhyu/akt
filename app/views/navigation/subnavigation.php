@@ -34,7 +34,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/navigation/subnavigation" method="post" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/navigation/subnavigation" method="post" class="col-sm-12" id="AddSubNavigation" name="AddSubNavigation" novalidate>
                             <div class="col-sm-6 form-group">
                                 <label>Sub Navigation</label>
                                 <input type="text" class="form-control" name="subnav" placeholder="Enter Sub Navigation" value="<?php echo $data['subnav']; ?>">
@@ -125,3 +125,29 @@
 </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#AddSubNavigation').validate({
+            rules : {
+                subnav: {
+                    required : true
+                },
+                mainNavSelect:{
+                    required : true
+                }
+            },
+            messages: {
+                subnav: {
+                    required: "Please enter Sub Navigation"
+                },
+                mainNavSelect: {
+                    required: "Please select Main Navigation"
+                }
+            },
+            // errors in the form
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            }
+        });
+    });
+</script>

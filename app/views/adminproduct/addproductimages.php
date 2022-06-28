@@ -34,7 +34,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/AdminProduct/addproductimages" method="post" enctype="multipart/form-data" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/AdminProduct/addproductimages" method="post" enctype="multipart/form-data" class="col-sm-12" id="addProductImages" name="addProductImages" novalidate>
                             <div class="col-sm-6 form-group">
                                 <label>Select Product</label>
                                 <select class="form-control" id="" name="product" size="1">
@@ -171,3 +171,31 @@
 
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#addProductImages').validate({
+            rules: {
+                product: {
+                    required: true
+                },
+                color: {
+                    required: true
+                },
+                file: {
+                    required: true
+                }
+            },
+            messages: {
+                product: {
+                    required: "Please select product"
+                },
+                color: {
+                    required: "Please select color"
+                },
+                file: {
+                    required: "Please select product images"
+                }
+            }
+        });
+    });
+</script>

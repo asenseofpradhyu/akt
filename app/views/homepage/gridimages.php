@@ -27,7 +27,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/homepage/gridimages" method="post" enctype="multipart/form-data" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/homepage/gridimages" method="post" enctype="multipart/form-data" class="col-sm-12" id="addGridImages" name="addGridImages" novalidate>
                             <div class="col-sm-6 form-group" style="margin-top:25px">
                                 <label>Image Title</label>
                                 <input type="text" class="form-control" name="imgtitle" placeholder="Enter Image Title" value="">
@@ -107,3 +107,37 @@
 </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#addGridImages').validate({
+            rules: {
+                imgtitle: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                subNavSelect: {
+                    required: true
+                },
+                gridimg: {
+                    required: true,
+                    extension: "jpg|jpeg|png|gif"
+                }
+            },
+            messages: {
+                imgtitle: {
+                    required: "Please enter image title",
+                    minlength: "Image title must be at least 3 characters long",
+                    maxlength: "Image title must be at least 50 characters long"
+                },
+                subNavSelect: {
+                    required: "Please select sub navigation"
+                },
+                gridimg: {
+                    required: "Please select image",
+                    extension: "Please select valid image"
+                }
+            }
+        });
+    });
+</script>

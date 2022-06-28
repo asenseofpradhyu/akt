@@ -27,7 +27,7 @@
                                 <div class="panel panel-bd lobidrag">
                                     
                                     <div class="panel-body">
-                                        <form action="<?php echo URLROOT; ?>/homepage/editaccessories/<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data" class="col-sm-12">
+                                        <form action="<?php echo URLROOT; ?>/homepage/editaccessories/<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data" class="col-sm-12" id="editAccessories" name="editAccessories" novalidate>
                                         <div class="col-sm-6 form-group" style="margin-top:25px">
                                                 <label>Image Title</label>
                                                 <input type="text" class="form-control" name="imgtitle" placeholder="Enter Image Title" value="<?php echo $data['title']?>" >
@@ -66,3 +66,43 @@
                  </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#editAccessories').validate({
+            rules: {
+                imgtitle: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                subNavSelect: {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 50
+                },
+                gridimg: {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 50
+                }
+            },
+            messages: {
+                imgtitle: {
+                    required: "Please enter a image title",
+                    minlength: "Image title must be at least 3 characters long",
+                    maxlength: "Image title cannot be more than 50 characters long"
+                },
+                subNavSelect: {
+                    required: "Please select a sub navigation",
+                    minlength: "Sub navigation must be at least 1 characters long",
+                    maxlength: "Sub navigation cannot be more than 50 characters long"
+                },
+                gridimg: {
+                    required: "Please select a grid image",
+                    minlength: "Grid image must be at least 1 characters long",
+                    maxlength: "Grid image cannot be more than 50 characters long"
+                }
+            }
+        });
+    });
+</script>

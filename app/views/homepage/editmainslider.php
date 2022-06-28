@@ -27,7 +27,7 @@
                                 <div class="panel panel-bd lobidrag">
                                     
                                     <div class="panel-body">
-                                        <form action="<?php echo URLROOT; ?>/homepage/editmainslider/<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data" class="col-sm-12">
+                                        <form action="<?php echo URLROOT; ?>/homepage/editmainslider/<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data" class="col-sm-12" id="editMainSlider" name="editMainSlider" novalidate>
                                             <div class="col-sm-6 form-group" style="margin-top:25px">
                                             <label >Slider Image</label>
                                                 <input type="file" name="sliderimg" id="picture">
@@ -63,3 +63,27 @@
                  </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('editMainSlider').validate({
+            rules: {
+                sliderimg: {
+                    required: true,
+                    accept: "image/*"
+                },
+                subNavSelect: {
+                    required: true
+                }
+            },
+            messages: {
+                sliderimg: {
+                    required: "Please select an image",
+                    accept: "Please select an image"
+                },
+                subNavSelect: {
+                    required: "Please select a sub navigation"
+                }
+            }
+        });
+    });
+</script>

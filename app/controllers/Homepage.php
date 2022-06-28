@@ -236,16 +236,6 @@ class Homepage extends Controller
       $mainsliderlist = $this->HomepageModel->getMainSliderById($id);
       $subNav = $this->NavigationModel->getsubnav();
 
-      // $data =[  
-      //   'id'=> $id,  
-      //  'img' => $subNav->sub_menu_name,
-      //  'mainnavid' => $subNav->main_menu_id,
-      //  'mainNavSelect' => $subNav->main_menu_id,
-      //  'subnav_err' => '',
-      //  'mainnav_err' => '',
-      //  'subnavlist' =>  $subNavlist
-      // ];
-
       $data = [
         'id' => $id,
         'img' => $mainsliderlist->img,

@@ -61,7 +61,7 @@ class HomepageModel
 
   public function updateMainSlider($data)
   {
-    $this->db->query('UPDATE index_mainslider SET sub_menu_id = :subid, img = :img WHERE mainslider_id = :id');
+    $this->db->query('UPDATE index_mainslider SET sub_menu_id = :subid, img = :img WHERE index_mainslider_id = :id');
     // Bind values
     $this->db->bind(':id', $data['id']);
     $this->db->bind(':subid', $data['subNavSelect']);

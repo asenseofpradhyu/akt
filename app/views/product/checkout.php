@@ -14,7 +14,7 @@
     <!--End Page Title with Image-->
     <div class="container">
         <!--Main Content-->
-        <form name='razorpayform' action="<?php echo URLROOT; ?>/Product/saveOrderDetails" method="POST">
+        <form name='razorpayform' action="<?php echo URLROOT; ?>/Product/saveOrderDetails" method="POST" id="razorpayform" novalidate>
             <div class="row">
                 <div class="col-md-6 col-lg-6">
                     <div class="card card--grey">
@@ -104,6 +104,7 @@
                         </div>
                     </div>
                     <div class="mt-2"></div>
+                    <input type="hidden" name="purchase_amount" value="<?php echo $data['payment_info']['amount']; ?>">
                     <?php
                     if ($data['payment_info']['amount'] > 0) :
                     ?>
@@ -182,3 +183,66 @@
 </script>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>
+<script>
+    $(function () {
+        $('#razorpayform').validate({
+            rules: {
+                first_name: {
+                    required: true,
+                    minlength: 3
+                },
+                last_name: {
+                    required: true,
+                    minlength: 3
+                },
+                address: {
+                    required: true,
+                    minlength: 3
+                },
+                state_id: {
+                    required: true
+                },
+                country_id: {
+                    required: true
+                },
+                zip_code: {
+                    required: true,
+                    minlength: 3
+                },
+                purchase_amount: {
+                    required: true
+                }
+            },
+            messages: {
+                first_name: {
+                    required: "Please enter your first name",
+                    minlength: "Your first name must be at least 3 characters long"
+                },
+                last_name: {
+                    required: "Please enter your last name",
+                    minlength: "Your last name must be at least 3 characters long"
+                },
+                address: {
+                    required: "Please enter your address",
+                    minlength: "Your address must be at least 3 characters long"
+                },
+                state_id: {
+                    required: "Please select your state"
+                },
+                country_id: {
+                    required: "Please select your country"
+                },
+                zip_code: {
+                    required: "Please enter your zip code",
+                    minlength: "Your zip code must be at least 3 characters long"
+                },
+                purchase_amount: {
+                    required: "Please enter your purchase amount"
+                }
+            },
+            errorplacement: function (error, element) {
+                error.insertAfter(element);
+            }
+        });
+    });
+</script>

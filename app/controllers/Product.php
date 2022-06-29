@@ -104,8 +104,7 @@ class Product extends Controller
             $getPayment->pay_var['user_name'] = $user->customer_name;
             $getPayment->pay_var['email'] = $user->customer_email;
             $getPayment->pay_var['mobile'] = $user->customer_phone;
-            $getPayment->pay_var['address'] = '2, navdeep'; //$address;
-            $getPayment->pay_var['order_id'] = 1; //giving static for now
+            $getPayment->pay_var['order_id'] = uniqid(); //giving static for now
             $paymentData = $getPayment->payment();
         };
         $data = [
@@ -155,12 +154,14 @@ class Product extends Controller
             $payment_info = [
                 'purchase_json'  => $payment_json,
                 'purchase_mode'  => 1,
+                'purchase_amount' => $_REQUEST['purchase_amount'],
                 'payment_status' => 1
             ];
         }else{
             $payment_info = [
                 'purchase_json'  => '',
                 'purchase_mode'  => 2,
+                'purchase_amount' => $_REQUEST['purchase_amount'],
                 'payment_status' => 0
             ];
         }

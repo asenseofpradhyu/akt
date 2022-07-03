@@ -27,7 +27,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/homepage/testimonial" method="post" enctype="multipart/form-data" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/homepage/testimonial" method="post" enctype="multipart/form-data" class="col-sm-12" id="addTestimonials" name="addTestimonials" novalidate>
                             <div class="col-sm-6 form-group" style="margin-top:25px">
                                 <label>Testimonial Description</label>
                                 <textarea class="form-control" name="descp"></textarea>
@@ -100,3 +100,37 @@
 </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#addTestimonials').validate({
+            rules: {
+                descp: {
+                    required: true,
+                    minlength: 10
+                },
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                gridimg: {
+                    required: true,
+                    extension: "jpg|jpeg|png|gif"
+                }
+            },
+            messages: {
+                descp: {
+                    required: "Please enter a description",
+                    minlength: "Description must be at least 10 characters long"
+                },
+                name: {
+                    required: "Please enter a name",
+                    minlength: "Name must be at least 3 characters long"
+                },
+                gridimg: {
+                    required: "Please upload an image",
+                    extension: "Please upload a valid image"
+                }
+            }
+        });
+    });
+</script>

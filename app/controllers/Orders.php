@@ -58,4 +58,21 @@ class Orders extends Controller
     return $this->view('adminorders/purchasereports', $data);
   }
 
+  public function purchaseList()
+  {
+    $this->checkAdmin();
+    $data = [
+      'title' => 'Purchase List',
+      'navigation' => $this->NavigationModel->getMainNav(),
+      'purchaselist' => $this->AdminProductModel->getPurchaseList(),
+    ];
+    return $this->view('adminorders/purchaselist', $data);
+  }
+
+  public function markAsPaid($purchase_id){
+    $this->checkAdmin();
+    $this->AdminProductModel->markAsPaid($purchase_id);
+    redirect('orders/purchaseList');
+  }
+
 }

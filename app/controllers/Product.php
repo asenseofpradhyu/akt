@@ -104,8 +104,7 @@ class Product extends Controller
             $getPayment->pay_var['user_name'] = $user->customer_name;
             $getPayment->pay_var['email'] = $user->customer_email;
             $getPayment->pay_var['mobile'] = $user->customer_phone;
-            $getPayment->pay_var['address'] = '2, navdeep'; //$address;
-            $getPayment->pay_var['order_id'] = 1; //giving static for now
+            $getPayment->pay_var['order_id'] = uniqid(); //giving static for now
             $paymentData = $getPayment->payment();
         };
         $data = [
@@ -150,17 +149,19 @@ class Product extends Controller
         $shipping_address_id = $this->UserModel->saveShippingAddress($shipping_address);
 
         // save payment details
-        if(isset($_REQUEST['razorpay_payment_id'])){
+        if(isset($_REQUEST['razorpay_payment_id']) && !empty($_REQUEST['razorpay_payment_id'])){
             $payment_json = json_encode(['razorpay_payment_id' => $_REQUEST['razorpay_payment_id'], 'razorpay_signature' => $_REQUEST['razorpay_signature']]);
             $payment_info = [
                 'purchase_json'  => $payment_json,
                 'purchase_mode'  => 1,
+                'purchase_amount' => $_REQUEST['purchase_amount'],
                 'payment_status' => 1
             ];
         }else{
             $payment_info = [
                 'purchase_json'  => '',
                 'purchase_mode'  => 2,
+                'purchase_amount' => $_REQUEST['purchase_amount'],
                 'payment_status' => 0
             ];
         }

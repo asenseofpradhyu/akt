@@ -27,7 +27,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/homepage/accessories" method="post" enctype="multipart/form-data" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/homepage/accessories" method="post" enctype="multipart/form-data" class="col-sm-12" id="addAccessories" name="addAccessories" novalidate>
                             <div class="col-sm-6 form-group" style="margin-top:25px">
                                 <label>Image Title</label>
                                 <input type="text" class="form-control" name="imgtitle" placeholder="Enter Image Title" value="">
@@ -107,3 +107,43 @@
 </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#addAccessories').validate({
+            rules: {
+                imgtitle: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                subNavSelect: {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 50
+                },
+                gridimg: {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 50
+                }
+            },
+            messages: {
+                imgtitle: {
+                    required: "Please enter a title",
+                    minlength: "Title must be at least 3 characters long",
+                    maxlength: "Title must be at least 50 characters long"
+                },
+                subNavSelect: {
+                    required: "Please select a submenu",
+                    minlength: "Submenu must be at least 1 characters long",
+                    maxlength: "Submenu must be at least 50 characters long"
+                },
+                gridimg: {
+                    required: "Please select a image",
+                    minlength: "Image must be at least 1 characters long",
+                    maxlength: "Image must be at least 50 characters long"
+                }
+            }
+        });
+    });
+</script>

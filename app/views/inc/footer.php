@@ -152,6 +152,9 @@
 <script src="<?php echo URLROOT; ?>/js/main.js"></script>
 <script src="<?php echo URLROOT; ?>/js/app.js"></script>
 <script src="<?php echo URLROOT; ?>/js/jquery.validate.min.js" type="text/javascript"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-62bc8c28ac0db2f6"></script>
+
 <script>
   // function changeSearchUrl(id) {
   //   $('#rgsearch-category').attr('action', global_link + '/product/productlist/' + id);

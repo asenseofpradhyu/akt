@@ -298,4 +298,23 @@ class AdminProductModel
 		$this->db->bind(':size_id', $size_id);
 		return $this->db->resultSet();
 	}
+
+	public function getPurchaseList(){
+		$query = "SELECT purchases.*, customer_account.customer_name, customer_account.customer_email, customer_account.customer_phone, product_orders.purchase_date FROM purchases INNER JOIN product_orders ON purchases.id = product_orders.purchase_id INNER JOIN customer_account ON product_orders.user_id = customer_account.customer_id GROUP BY purchases.id";
+		$this->db->query($query);
+		return $this->db->resultSet();
+	}
+
+	public function markAsPaid(int $purchase_id){
+		$query = "UPDATE purchases SET payment_status = 1 WHERE id = :purchase_id";
+		$this->db->query($query);
+		// Bind value
+		$this->db->bind(':purchase_id', $purchase_id);
+		// Execute
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -34,7 +34,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/navigation/editsubnavigation/<?php echo $data['id']; ?>" method="post" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/navigation/editsubnavigation/<?php echo $data['id']; ?>" method="post" class="col-sm-12" id="EditSubNavigation" name="EditSubNavigation" novalidate>
                             <div class="col-sm-6 form-group">
                                 <label>Sub Navigation</label>
                                 <input type="text" class="form-control" name="subnav" placeholder="Enter Sub Navigation" value="<?php echo $data['subnav']; ?>" required>
@@ -61,7 +61,9 @@
                                     <option selected class="test" disabled>Select Sub Navigation Title</option>
                                     <?php foreach ($data['list'] as $nav) : ?>
                                         <?php if ($nav->sub_menu_links == 0) { ?>
-                                            <option value="<?php echo $nav->sub_menu_id ?>" <?php if($data['parentid'] == $nav->sub_menu_id){echo 'selected';} ?>><?php echo $nav->sub_menu_name; ?></option>
+                                            <option value="<?php echo $nav->sub_menu_id ?>" <?php if ($data['parentid'] == $nav->sub_menu_id) {
+                                                                                                echo 'selected';
+                                                                                            } ?>><?php echo $nav->sub_menu_name; ?></option>
                                         <?php } ?>
                                     <?php endforeach; ?>
 
@@ -82,3 +84,29 @@
 </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#EditSubNavigation').validate({
+            rules : {
+                subnav: {
+                    required : true
+                },
+                mainNavSelect:{
+                    required : true
+                }
+            },
+            messages: {
+                subnav: {
+                    required: "Please enter Sub Navigation"
+                },
+                mainNavSelect: {
+                    required: "Please select Main Navigation"
+                }
+            },
+            // errors in the form
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            }
+        });
+    });
+</script>

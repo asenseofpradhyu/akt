@@ -27,7 +27,7 @@
                 <div class="panel panel-bd lobidrag">
 
                     <div class="panel-body">
-                        <form action="<?php echo URLROOT; ?>/homepage/mainslider" method="post" enctype="multipart/form-data" class="col-sm-12">
+                        <form action="<?php echo URLROOT; ?>/homepage/mainslider" method="post" enctype="multipart/form-data" class="col-sm-12" id="addMainSlider" name="addMainSlider" novalidate>
                             <div class="col-sm-6 form-group" style="margin-top:25px">
                                 <label>Slider Image</label>
                                 <input type="file" name="sliderimg" id="picture">
@@ -100,3 +100,27 @@
 </div> <!-- /.content-wrapper -->
 
 <?php require APPROOT . '/views/admininc/adminfooter.php'; ?>
+<script>
+    $(function () {
+        $('#addMainSlider').validate({
+            rules: {
+                sliderimg: {
+                    required: true,
+                    accept: "image/*"
+                },
+                subNavSelect: {
+                    required: true
+                }
+            },
+            messages: {
+                sliderimg: {
+                    required: "Please select an image",
+                    accept: "Please select an image file"
+                },
+                subNavSelect: {
+                    required: "Please select a sub menu"
+                }
+            }
+        });
+    });
+</script>

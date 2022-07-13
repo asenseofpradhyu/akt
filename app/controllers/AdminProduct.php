@@ -183,8 +183,8 @@ class AdminProduct extends Controller
         $isAddValue = $this->ProductModel->AddProduct($data);
 
         if ($isAddValue) {
+          redirect('AdminProduct/adminproductlist');
 
-          redirect('AdminProduct/addproduct');
         } else {
           $data['color_err'] = 'Wrong Information';
 
@@ -308,7 +308,8 @@ class AdminProduct extends Controller
 
 
         // Configure upload directory and allowed file types 
-        $upload_dir = UPLOADPATH . "/public/uploads/";
+        $public_path = "/public/uploads/";
+        $upload_dir = UPLOADPATH . $public_path;
         $allowed_types = array('jpg', 'png', 'jpeg');
 
         // Define maxsize for files 250KB 
@@ -339,8 +340,10 @@ class AdminProduct extends Controller
               // If file with name already exist then append time in 
               // front of name of the file to avoid overwriting of file 
               if (file_exists($filepath)) {
-                $filepath = $upload_dir . time() . $file_name;
-                $data['imgFile'] = $filepath;
+                $f_name = time() . $file_name;
+                $filepath = $upload_dir . $f_name;
+                // $data['imgFile'] = $filepath;
+                $data['imgFile'] = $public_path . $f_name;
 
                 if (move_uploaded_file($file_tmpname, $filepath)) {
                   $success .= "{$file_name} successfully uploaded <br />";
@@ -486,7 +489,8 @@ class AdminProduct extends Controller
 
 
         // Configure upload directory and allowed file types 
-        $upload_dir = UPLOADPATH . "/public/uploads/";
+        $public_path = "/public/uploads/";
+        $upload_dir = UPLOADPATH . $public_path;
         $allowed_types = array('jpg', 'png', 'jpeg');
 
         // Define maxsize for files 250KB 
@@ -517,8 +521,10 @@ class AdminProduct extends Controller
               // If file with name already exist then append time in 
               // front of name of the file to avoid overwriting of file 
               if (file_exists($filepath)) {
-                $filepath = $upload_dir . time() . $file_name;
-                $data['imgFile'] = $filepath;
+                $f_name = time() . $file_name;
+                $filepath = $upload_dir . $f_name;
+                // $data['imgFile'] = $filepath;
+                $data['imgFile'] = $public_path . $f_name;
 
                 if (move_uploaded_file($file_tmpname, $filepath)) {
                   $success .= "{$file_name} successfully uploaded <br />";

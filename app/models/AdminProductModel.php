@@ -12,7 +12,7 @@ class AdminProductModel
 	public function AddProduct($data)
 	{
 
-		$this->db->query('INSERT INTO product_detail (product_name, product_desc, main_menu_id, sub_menu_id, total_price, discount_price, product_code,, length, garment, neck, fabric, occasion, design_type, d_inclusive, d_not_inclusive, care, style_tip, status, created_date)  
+		$this->db->query('INSERT INTO product_detail (product_name, product_desc, main_menu_id, sub_menu_id, total_price, discount_price, product_code, length, garment, neck, fabric, occasion, design_type, d_inclusive, d_not_inclusive, care, style_tip, status, created_date)  
                                             VALUES(:product_name, :product_desc, :main_menu_id, :sub_menu_id, :total_price, :discount_price, :product_code, :length, :garment, :neck, :fabric, :occasion, :design_type, :d_inclusive, :d_not_inclusive, :care, :style_tip, 1, NOW())');
 		// Bind values
 		$this->db->bind(':product_name', $data['productname']);

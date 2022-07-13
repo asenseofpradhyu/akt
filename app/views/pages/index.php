@@ -1300,7 +1300,7 @@
 		</div>
 		<div class="display-table">
 			<div class="display-table-cell newsletter-form">
-				<form method="post">
+				<form method="post" action="<?php echo URLROOT . '/homepage/addEmailSubs'; ?>">
 					<div class="input-group">
 						<input type="email" class="input-group__field newsletter-input" name="email" value="" placeholder="Enter Email address" required>
 						<span class="input-group__btn">

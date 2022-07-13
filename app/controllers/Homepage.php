@@ -1238,6 +1238,12 @@ class Homepage extends Controller
     $this->view('homepage/emailsubs', $data);
   }
 
+  public function addEmailSubs()
+  {
+      $this->HomepageModel->addEmailSubs(['email' => $_POST['email']]);
+      redirect('/');
+  }
+
   public function deleteemailsubs($id)
   {
 

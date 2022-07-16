@@ -42,42 +42,6 @@ class Users extends Controller
                 'sub_menu' => $subNav,
             ];
 
-            // Validate Name
-            if (empty($data['name'])) {
-                $data['name_err'] = 'Please enter your Name';
-            }
-
-            // Validate Password
-            if (empty($data['password'])) {
-                $data['password_err'] = 'Pleae enter password';
-            } elseif (strlen($data['password']) < 8 && !preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $data['password'])) {
-                $data['password_err'] = 'Password must contain 8 or more characters of letters, numbers and at least one special character.';
-            }
-
-            // Validate Confirm Password
-            if (empty($data['confpassword'])) {
-                $data['confpassword_err'] = 'Please confirm password';
-            } else {
-                if ($data['password'] != $data['confpassword']) {
-                    $data['confpassword_err'] = 'Passwords do not match';
-                }
-            }
-
-            // Validate Email
-            if (empty($data['email'])) {
-                $data['email_err'] = 'Please enter valid Email';
-            }
-
-            // Validate Phone
-            if (empty($data['phone'])) {
-                $data['phone_err'] = 'Please enter valid Phone Number';
-            }
-
-            // Validate Check
-            if (empty($data['check'])) {
-                $data['check_err'] = 'Please read & Check our terms & conditions';
-            }
-
             // Check for user/email
             if ($this->userModel->findUserByEmail($data['email'])) {
                 // User found
@@ -97,6 +61,13 @@ class Users extends Controller
                 $loggedInUser = $this->userModel->register($data);
 
                 if ($loggedInUser) {
+                    $html = $this->emailTemplate('email/registration', ['username' => $data['name']]);
+                    $sendmail = new sendmail();
+                    $sendmail->mail_params['tousers'][0]['email'] = $_POST['Customeremail'];
+                    $sendmail->mail_params['tousers'][0]['name'] = $_POST['Customername'];
+                    $sendmail->mail_params['subject'] = 'Welcome TO Aktwear';
+                    $sendmail->mail_params['body'] = $html;
+                    $mail_sent = $sendmail->sendMail();
                     // Redirect to login
                     $this->view('pages/login', $data);
                 }

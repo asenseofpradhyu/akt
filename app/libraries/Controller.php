@@ -36,4 +36,15 @@ class Controller
       die('View does not exist');
     }
   }
+
+  public function emailTemplate($template_file, $data = []){
+    $template_file = '../app/views/' . $template_file . '.php';
+    if(file_exists($template_file)){
+      $array_keys = array_map(function($key){
+        return '#' . $key . '#';
+      }, array_keys($data));
+      return str_replace($array_keys, array_values($data), file_get_contents($template_file));
+    }
+    return '';
+  }
 }

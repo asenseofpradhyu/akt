@@ -459,20 +459,7 @@ class Users extends Controller
     {
         $email = $_POST['email'];
         $user = $this->userModel->findUserByEmail($email, 1);
-        $html = '<table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>User Name: </th>
-          <th>' . $user->customer_name . '</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Password: </td>
-          <td>' . $user->customer_password . '</td>
-        </tr>
-      </tbody>
-    </table>';
+        $html = $this->emailTemplate('email/forgot_password', ['username' => $user->customer_name, 'password' => $user->customer_password]);
 
         // make email parameters
         $sendmail = new sendmail();

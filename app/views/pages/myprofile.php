@@ -43,7 +43,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav flex-column dashboard-list" role="tablist">
                         <li><a class="nav-link active" data-toggle="tab" href="#Profile">Profile</a></li>
-                         <li><a class="nav-link" data-toggle="tab" href="#address"> My Addresses</a></li>
+                         <!-- <li><a class="nav-link" data-toggle="tab" href="#address"> My Addresses</a></li> -->
                         <li><a class="nav-link" data-toggle="tab" href="#orders" onclick="displayUserOrders();">My Orders</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#wishlist">My Wishlist</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#changepasssword">Change Password</a></li>

@@ -210,7 +210,7 @@ class AdminProductModel
 
 	public function getPurchaseReportAllUsers()
 	{
-		$getOrders ="select	product_orders.purchase_date, product_detail.product_name, sizes.title AS size, color.color, order_details.quantity, users.customer_name, users.customer_email, users.customer_phone from product_orders INNER JOIN order_details ON product_orders.id = order_details.order_id INNER JOIN product_detail ON order_details.product_id = product_detail.product_id INNER JOIN purchases ON product_orders.purchase_id = purchases.id INNER JOIN sizes ON order_details.size_id = sizes.id INNER JOIN color ON order_details.color_id = color.color_id INNER JOIN customer_account AS users ON product_orders.user_id = users.customer_id group by product_orders.purchase_date order by product_orders.purchase_date DESC";
+		$getOrders ="select	product_orders.purchase_date, product_detail.product_name, sizes.title AS size, color.color, order_details.quantity, users.customer_name, users.customer_email, users.customer_phone from product_orders INNER JOIN order_details ON product_orders.id = order_details.order_id INNER JOIN product_detail ON order_details.product_id = product_detail.product_id INNER JOIN purchases ON product_orders.purchase_id = purchases.id INNER JOIN sizes ON order_details.size_id = sizes.id INNER JOIN color ON order_details.color_id = color.color_id INNER JOIN customer_account AS users ON product_orders.user_id = users.customer_id order by product_orders.purchase_date DESC";
 
 		$this->db->query($getOrders);
 		return $this->db->resultSet();
@@ -300,7 +300,7 @@ class AdminProductModel
 	}
 
 	public function getPurchaseList(){
-		$query = "SELECT purchases.*, customer_account.customer_name, customer_account.customer_email, customer_account.customer_phone, product_orders.purchase_date FROM purchases INNER JOIN product_orders ON purchases.id = product_orders.purchase_id INNER JOIN customer_account ON product_orders.user_id = customer_account.customer_id GROUP BY purchases.id";
+		$query = "SELECT purchases.*, customer_account.customer_name, customer_account.customer_email, customer_account.customer_phone, product_orders.purchase_date, shipping_info.address, shipping_info.zip_code, states.name AS state, countries.name AS country FROM purchases INNER JOIN product_orders ON purchases.id = product_orders.purchase_id INNER JOIN customer_account ON product_orders.user_id = customer_account.customer_id INNER JOIN shipping_info ON product_orders.shipping_address_id=shipping_info.id INNER JOIN countries ON shipping_info.country_id=countries.id INNER JOIN states ON shipping_info.state_id=states.id GROUP BY purchases.id order by purchases.id DESC";
 		$this->db->query($query);
 		return $this->db->resultSet();
 	}

@@ -36,6 +36,7 @@
                             <th>Customer Email</th>
                             <th>Customer Phone</th>
                             <th>Purchase Amount</th>
+                            <th>Address</th>
                             <th>Purchase Date</th>
                         </tr>
                     </thead>
@@ -51,6 +52,7 @@
                                 <td><?php echo $product->customer_email; ?></td>
                                 <td><?php echo $product->customer_phone; ?></td>
                                 <td><?php echo $product->purchase_amount; ?></td>
+                                <td><?php echo join(',', [$product->address, $product->state, $product->country, $product->zip_code]); ?></td>
                                 <td><?php echo $product->purchase_date; ?></td>
                             </tr>
 

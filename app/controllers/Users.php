@@ -152,7 +152,7 @@ class Users extends Controller
                 // Check and set logged in user
                 $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
-                if ($loggedInUser) {
+                if ($loggedInUser && $loggedInUser->customer_password == $data['password']) {
                     // Create Session
                     $this->createCustomerSession($loggedInUser);
                     redirect('');

@@ -12,6 +12,7 @@ class Orders extends Controller
     $this->HomepageModel = $this->model('HomepageModel');
     $this->AdminProductModel  = $this->model('AdminProductModel');
     $this->ProductModel  = $this->model('ProductModel');
+    $this->UsersModel    = $this->model('UsersModel');
   }
 
   public function checkAdmin()
@@ -73,6 +74,17 @@ class Orders extends Controller
     $this->checkAdmin();
     $this->AdminProductModel->markAsPaid($purchase_id);
     redirect('orders/purchaseList');
+  }
+
+  public function userList()
+  {
+    $this->checkAdmin();
+    $data = [
+      'title' => 'User List',
+      'navigation' => $this->NavigationModel->getMainNav(),
+      'userlist' => $this->UsersModel->getUserList(),
+    ];
+    return $this->view('adminorders/userlist', $data);
   }
 
 }

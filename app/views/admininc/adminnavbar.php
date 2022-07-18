@@ -375,6 +375,7 @@
                     <ul class="treeview-menu">
                         <li><a href="<?php echo URLROOT; ?>/orders/getAllPurchaseReport">Sales Report</a></li>
                         <li><a href="<?php echo URLROOT; ?>/orders/purchaseList">Purchase Report</a></li>
+                        <li><a href="<?php echo URLROOT; ?>/orders/userList">Users</a></li>
                     </ul>
                 </li>
             </ul>

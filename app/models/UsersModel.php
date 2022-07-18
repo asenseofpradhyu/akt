@@ -192,4 +192,10 @@ class UsersModel
         $this->db->query("SELECT * FROM states WHERE country_id=$country_id");
         return $this->db->resultSet();
     }
+
+    public function getUserList()
+    {
+        $this->db->query('SELECT * FROM customer_account order by customer_id desc');
+        return $this->db->resultSet();
+    }
 }

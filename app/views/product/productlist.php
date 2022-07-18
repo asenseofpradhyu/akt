@@ -65,8 +65,8 @@
 						<ul>
 							<?php foreach ($data['colors'] as $key => $color): ?>
 							<li>
-								<input type="checkbox" value="<?php echo $color->color_id; ?>" class="common_selector colorID" id="check1" name="filterColor[]">
-								<label for="check1"><span><span></span></span><?php echo $color->color; ?></label>
+								<input type="checkbox" value="<?php echo $color->color_id; ?>" class="common_selector colorID" id="colorscheck<?php echo $key; ?>" name="filterColor[]">
+								<label for="colorscheck<?php echo $key; ?>"><span><span></span></span><?php echo $color->color; ?></label>
 							</li>
 							<?php endforeach; ?>
 						</ul>
@@ -80,43 +80,12 @@
 						<ul>
 							<?php foreach ($data['sizes'] as $key => $size): ?>
 							<li>
-								<input type="checkbox" value="<?php echo $size->id; ?>" id="check1" class="common_selector sizeID" name="filterSize[]">
-								<label for="check1"><span><span></span></span><?php echo $size->title; ?></label>
+								<input type="checkbox" value="<?php echo $size->id; ?>" id="sizescheck<?php echo $key; ?>" class="common_selector sizeID" name="filterSize[]">
+								<label for="sizescheck<?php echo $key; ?>"><span><span></span></span><?php echo $size->title; ?></label>
 							</li>
 							<?php endforeach; ?>
 						</ul>
 					</div>
-					<!--End Color Swatches-->
-					<!--Fabric commented-->
-					<!-- <div class="sidebar_widget filterBox filter-widget brand-filter">
-						<div class="widget-title">
-							<h2>Fabric</h2>
-						</div>
-						<ul>
-							<li>
-								<input type="checkbox" value="allen-vela" id="check1" class="common_selector fabric">
-								<label for="check1"><span><span></span></span>Allen Vela</label>
-							</li>
-							<li>
-								<input type="checkbox" value="oxymat" id="check3" class="common_selector fabric">
-								<label for="check3"><span><span></span></span>Oxymat</label>
-							</li>
-							<li>
-								<input type="checkbox" value="vanelas" id="check4" class="common_selector fabric">
-								<label for="check4"><span><span></span></span>Vanelas</label>
-							</li>
-							<li>
-								<input type="checkbox" value="testing" id="check5" class="common_selector fabric">
-								<label for="check5"><span><span></span></span>Pagini</label>
-							</li>
-							<li>
-								<input type="checkbox" value="test" id="check6" class="common_selector fabric">
-								<label for="check6"><span><span></span></span>Monark</label>
-							</li>
-						</ul>
-					</div> -->
-					<!--End Fabric commented-->
-					<!--Popular Products-->
 
 
 					<!--End Popular Products-->

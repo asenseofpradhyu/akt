@@ -78,4 +78,25 @@ class Pages extends Controller
   {
     $this->view('pages/empty');
   }
+
+  public function postContact(){
+    $request = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    $this->HomepageModel->saveInquiryDetails($request);
+    // send mail to self user
+    // make email parameters
+    $sendmail = new sendmail();
+    $sendmail->mail_params['tousers'][0]['email'] = SITE_ADMIN_EMAIL;
+    $sendmail->mail_params['tousers'][0]['name'] = SITE_ADMIN_USERNAME;
+    $sendmail->mail_params['subject'] = 'Inquiry from '.$request['name'];
+    $sendmail->mail_params['body'] = $this->emailTemplate('email/inquiry_admin', $request);
+    $sendmail->sendMail();
+
+    $sendmail = new sendmail();
+    $sendmail->mail_params['tousers'][0]['email'] = $request['email'];
+    $sendmail->mail_params['tousers'][0]['name'] = $request['name'];
+    $sendmail->mail_params['subject'] = 'Inquiry Response';
+    $sendmail->mail_params['body'] = $this->emailTemplate('email/inquiry_user', $request);
+    $sendmail->sendMail();
+    redirect('pages/contact');
+  }
 }

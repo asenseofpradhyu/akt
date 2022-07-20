@@ -419,4 +419,15 @@ class HomepageModel
     $getId = $this->db->execute(1);
     return $getId;
   }
+
+  public function saveInquiryDetails(array $param){
+    $query = "INSERT INTO inquiries (name, email, phone_no, subject, message) VALUES (:name, :email, :phone_no, :subject, :message)";
+    $this->db->query($query);
+    $this->db->bind(':name', $param['name']);
+    $this->db->bind(':email', $param['email']);
+    $this->db->bind(':phone_no', $param['phone']);
+    $this->db->bind(':subject', $param['subject']);
+    $this->db->bind(':message', $param['message']);
+    return $this->db->execute(true);
+  }
 }

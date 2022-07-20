@@ -87,4 +87,15 @@ class Orders extends Controller
     return $this->view('adminorders/userlist', $data);
   }
 
+  public function inquiryList()
+  {
+    $this->checkAdmin();
+    $data = [
+      'title' => 'Inquiry List',
+      'navigation' => $this->NavigationModel->getMainNav(),
+      'inquirylist' => $this->HomepageModel->getInquiryList(),
+    ];
+    return $this->view('adminorders/inquirylist', $data);
+  }
+
 }

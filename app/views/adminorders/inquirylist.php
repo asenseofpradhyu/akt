@@ -8,19 +8,11 @@
             <i class="pe-7s-note2"></i>
         </div>
         <div class="header-title">
-            <form action="#" method="get" class="sidebar-form search-box pull-right hidden-md hidden-lg hidden-sm">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button type="submit" name="search" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-            </form>
             <h1>Report</h1>
-            <small>Product Purchases List</small>
+            <small>Inquiries List</small>
             <ol class="breadcrumb hidden-xs">
                 <li><a href="<?php echo URLROOT; ?>/adminmaster/admindashboard"><i class="pe-7s-home"></i> Home</a></li>
-                <li class="active">Users List</li>
+                <li class="active">Inquiry Report</li>
             </ol>
         </div>
     </section>
@@ -32,22 +24,26 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Customer Name</th>
-                            <th>Customer Email</th>
-                            <th>Customer Phone</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Subject</th>
+                            <th>Message</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <?php
                         $count = 1;
-                        foreach ($data['userlist'] as $product) :
+                        foreach ($data['inquirylist'] as $inquiry) :
                         ?>
                             <tr>
-                                <td><?php echo $count++; ?></td>
-                                <td><?php echo $product->customer_name; ?></td>
-                                <td><?php echo $product->customer_email; ?></td>
-                                <td><?php echo $product->customer_phone; ?></td>
+                                <td><?php echo $count++; ?> </td>
+                                <td><?php echo $inquiry->name; ?></td>
+                                <td><?php echo $inquiry->email; ?></td>
+                                <td><?php echo $inquiry->phone_no; ?></td>
+                                <td><?php echo $inquiry->subject; ?></td>
+                                <td><?php echo $inquiry->message; ?></td>
                             </tr>
 
                         <?php endforeach;

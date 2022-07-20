@@ -430,4 +430,13 @@ class HomepageModel
     $this->db->bind(':message', $param['message']);
     return $this->db->execute(true);
   }
+
+  public function getInquiryList()
+  {
+    $this->db->query('SELECT * FROM inquiries ORDER BY id DESC');
+
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
 }

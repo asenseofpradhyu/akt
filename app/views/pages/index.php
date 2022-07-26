@@ -1073,7 +1073,7 @@
 			<div class="collection-grid-slider">
 				<?php foreach ($data['salesCollection'] as $nav) : ?>
 					<div class="collection-item">
-						<a href="category-3columns.html" class="collection-grid-link">
+						<a href="<?php echo join('/', [URLROOT, 'product/productlist', $nav->sub_menu_id]); ?>" class="collection-grid-link">
 							<div class="img">
 								<img data-src="<?php echo $nav->sc_img; ?>" src="<?php echo $nav->sc_img; ?>" alt="<?php echo $nav->sc_name; ?>" class="blur-up lazyload" />
 							</div>

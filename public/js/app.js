@@ -395,14 +395,17 @@ function getstringPart() {
 $('#apply_coupon').click(function (e) {
     e.preventDefault();
     coupon_code = $('#coupon_code').val();
+    grandTotal  = $('#grand_total').val();
     $.ajax({
         type: "GET",
         url: `${global_link}/Coupon/checkApplyCoupon`,
-        data: { method: 'applyCouponCode', coupon_code: coupon_code },
+        data: { method: 'applyCouponCode', coupon_code: coupon_code, grandTotal: grandTotal },
         dataType: 'JSON',
         success: function (response) {
             if(response.status == 1){
-                $('#coupon_id').val(response.coupon_code.coupon_code);
+                $('#coupon_id').val(response.coupon_code.id);
+                $('#grand_total_txt').text(response.total_amount.toFixed(2) + '( Discount: '+ response.discount + '%)');
+                $('#grand_total').val(response.total_amount.toFixed(2));
                 alert('coupon applied');
             }else{
                 alert('coupons can not be used not exist');

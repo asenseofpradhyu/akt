@@ -24,7 +24,7 @@ class Product extends Controller
         redirect('');
     }
 
-    public function productlist($id = 0)
+    public function productlist(int $id = 0)
     {
         $data['id'] = $id;
         if (isset($_REQUEST['product_category_id']) && isset($_REQUEST['search_query'])) {
@@ -91,7 +91,6 @@ class Product extends Controller
 
     public function checkout($customerID)
     {
-
         // $detail = $this->ProductModel->getProductDetail($id);
         $singleimg = $this->ProductModel->getCartProductSingleImg($customerID);
         $payment_info = $this->getPayableAmount($singleimg, ['coupon_id' => $_REQUEST['coupon_id']]);
@@ -124,15 +123,17 @@ class Product extends Controller
             $payable_amount += ($product->discount_price * $product->qnty);
         }
         $coupon_id = 0;
+        $discount_amount = 0;
         $payable_amount += (($payable_amount < 500) ? 60 : 0);
         if (!empty($params['coupon_id'])) {
-            $coupon = $this->CouponModel->checkApplyCoupon($params['coupon_id']);
+            $coupon = $this->CouponModel->getCoupon($params['coupon_id']);
             if (!empty($coupon)) {
                 $payable_amount -= ($payable_amount * ($coupon->discount / 100));
                 $coupon_id = $coupon->id;
+                $discount_amount = $coupon->discount;
             }
         }
-        return ['amount' => $payable_amount, 'coupon_id' => $coupon_id];
+        return ['amount' => $payable_amount, 'coupon_id' => $coupon_id, 'discount_amount' => $discount_amount];
     }
 
     public function saveOrderDetails()
@@ -155,14 +156,16 @@ class Product extends Controller
                 'purchase_json'  => $payment_json,
                 'purchase_mode'  => 1,
                 'purchase_amount' => $_REQUEST['purchase_amount'],
-                'payment_status' => 1
+                'payment_status' => 1,
+                'coupon_id'      => $_REQUEST['coupon_id'],
             ];
         }else{
             $payment_info = [
                 'purchase_json'  => '',
                 'purchase_mode'  => 2,
                 'purchase_amount' => $_REQUEST['purchase_amount'],
-                'payment_status' => 0
+                'payment_status' => 0,
+                'coupon_id'      => $_REQUEST['coupon_id'],
             ];
         }
         $payment_details_id = $this->UserModel->savePaymentDetails($payment_info);

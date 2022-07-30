@@ -54,8 +54,16 @@ class Coupon extends Controller{
 
     public function checkApplyCoupon(){
         $coupon_code = $_REQUEST['coupon_code'];
+        $total_amount = $_REQUEST['grandTotal'];
         $cou = $this->CouponModel->checkApplyCoupon($coupon_code);
-        echo json_encode(['status' => (!empty($cou)? 1 : 0), 'coupon_code' => (array)$cou]);
-        // return $cou;
+        if($cou){
+            $discount = $cou->discount;
+            $discount_amount = $total_amount * ($discount/100);
+            $total_amount = $total_amount - $discount_amount;
+            $_SESSION['coupon_id'] = $cou->id;
+            echo json_encode(['status' => 1, 'discount' => $discount, 'discount_amount' => $discount_amount, 'total_amount' => $total_amount, 'coupon_code' => (array) $cou]);
+        }else{
+            echo json_encode(['status' => 0]);
+        }
     }
 }

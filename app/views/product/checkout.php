@@ -95,8 +95,11 @@
                                             <td><?php echo $shipping_charges; ?></td>
                                         </tr>
                                         <tr>
+                                            <td colspan="3" class="text-right">Discount</td>
+                                            <td><?php echo $data['payment_info']['discount_amount']; ?>%</td>
+                                        <tr>
                                             <td colspan="3" class="text-right">Total</td>
-                                            <td><?php echo $subtotal; ?></td>
+                                            <td><?php echo $data['payment_info']['amount']; ?></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -104,6 +107,7 @@
                         </div>
                     </div>
                     <div class="mt-2"></div>
+                    <input type="hidden" name="coupon_id" value="<?php echo $data['payment_info']['coupon_id']; ?>">
                     <input type="hidden" name="purchase_amount" value="<?php echo $data['payment_info']['amount']; ?>">
                     <?php
                     if ($data['payment_info']['amount'] > 0) :

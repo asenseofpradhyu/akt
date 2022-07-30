@@ -16,6 +16,7 @@
             <!--Main Content-->
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 main-col">
                 <form id="cartForm" action="<?php echo URLROOT; ?>/product/checkout/<?php echo $_SESSION['customer_id']; ?>" method="post" class="cart style2">
+                <input type="hidden" name="coupon_id" id="coupon_id">
                     <table>
                         <thead class="cart__row cart__header">
                             <tr>
@@ -71,7 +72,6 @@
 
                     <div class="currencymsg">We processes all orders in USD. While the content of your cart is currently displayed in USD, the checkout will use USD at the most current exchange rate.</div>
                     <hr>
-                    <input type="hidden" name="coupon_id" id="coupon_id">
                 </form>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
@@ -92,7 +92,8 @@
                     </div>
                     <div class="row border-bottom pb-2 pt-2">
                         <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Grand Total</strong></span>
-                        <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money"><?php echo $subtotal + $shipping_charges; ?></span></span>
+                        <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money" id="grand_total_txt"><?php echo $subtotal + $shipping_charges; ?></span></span>
+                        <input type="hidden" id="grand_total" value="<?php echo $subtotal + $shipping_charges; ?>">
                     </div>
 
 

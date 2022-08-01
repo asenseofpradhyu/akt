@@ -197,60 +197,26 @@ class Product extends Controller
         $productDetails = $this->ProductModel->getPurchasedProductDetails($order_id);
         $shipping = $this->ProductModel->getShippingDetail($order_id);
         $payment_id = json_decode($shipping->purchase_json, true);
-
-        $html = '<p>Dear customer, your order has been processed. here are your purchase details</p><br>';
-
-        // shipping address table
-        $html .= '<h2>Shipping & Purchase Details</h2>
-                <table class="table table-striped table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>State</th>
-                            <th>Zip Code</th>
-                            <th>Country</th>
-                            <th>Purchase Id</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-        $html .= '<tr>
-                        <td> ' . $shipping->first_name . ' ' . $shipping->last_name . '</td>
-                        <td>' . $shipping->address . '</td>
-                        <td>' . $shipping->state_name . '</td>
-                        <td>' . $shipping->zip_code . '</td>
-                        <td>' . $shipping->country_name . '</td>
-                        <td>' . $payment_id['razorpay_payment_id'] . '</td>
-                    </tr>';
-        '</tbody>
-        </table><br>';
-
-        // products table
-        $html .= '<h2>Product Details</h2>
-                <table class="table table-striped table-responsive">
-                    <thead>
-                        <tr>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Size</th>
-                        <th>Color</th>
-                        <th>Product Code</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
+        $innerhtml = '';
         foreach ($productDetails as $product) :
-            $html .= '<tr>
-                    <td> ' . $product->product_name . '</td>
-                    <td>' . $product->discount_price . '</td>
-                    <td>' . $product->quantity . '</td>
-                    <td>' . $product->size_id . '</td>
-                    <td>' . $product->color . '</td>
-                    <td>' . $product->product_code . '</td>
-                    </tr>';
+            $innerData = [
+                'product_name' => $product->product_name,
+                'price' => $product->discount_price,
+                'quantity' => $product->quantity,
+                'product_image' => join('/', [URLROOT, $product->images]),
+                'color' => $product->color,
+                'size' => $product->size,
+            ];
+            $innerhtml .= $this->emailTemplate('email/product_portion', $innerData);
         endforeach;
-        '</tbody>
-        </table>';
+
+        $param_array['address'] = join(',', [$shipping->address, $shipping->state_name, $shipping->zip_code, $shipping->country_name]);
+        $param_array['name'] = join(' ', [$shipping->first_name, $shipping->last_name]);
+        $param_array['total_price'] = $shipping->purchase_amount;
+        $param_array['order_id'] = $order_id;
+        $param_array['product_portion'] = $innerhtml;
+
+        $html = $this->emailTemplate('email/purchase_product', $param_array);
 
         // make email parameters
         $sendmail = new sendmail();

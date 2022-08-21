@@ -27,6 +27,12 @@ class Controller
   // Load view
   public function view($view, $data = [])
   {
+    if(!isset($data['main_menu'])){
+      $data['main_menu'] = $this->NavigationModel->getMainNav();
+    }
+    if(!isset($data['sub_menu'])){
+      $data['sub_menu'] = $this->NavigationModel->getsubnav();
+    }
     $data = array_merge($data, $this->data);
     // Check for view file
     if (file_exists('../app/views/' . $view . '.php')) {

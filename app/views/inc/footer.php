@@ -41,12 +41,12 @@
         <div class="col-12 col-sm-12 col-md-4 col-lg-3 footer-links">
           <h4 class="h4">Policy</h4>
           <ul>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="privacy-policy.html">Shipping Policy</a></li>
-            <li><a href="privacy-policy.html">Payment Options</a></li>
-            <li><a href="privacy-policy.html">Return Policy</a></li>
-            <li><a href="privacy-policy.html">Terms & Conditions</a></li>
-            <li><a href="privacy-policy.html">Disclaimer</a></li>
+            <li><a href="<?php echo URLROOT . '/pages/privacy_policy' ?>">Privacy Policy</a></li>
+            <li><a href="<?php echo URLROOT . '/pages/shipping_policy' ?>">Shipping Policy</a></li>
+            <li><a href="<?php echo URLROOT . '/pages/terms_conditions' ?>">Terms & Conditions</a></li>
+            <li><a href="<?php echo URLROOT . '/pages/return_policy' ?>">Return Policy</a></li>
+            <!-- <li><a href="<?php echo URLROOT . '/pages/' ?>">Payment Options</a></li> -->
+            <!-- <li><a href="<?php echo URLROOT . '/pages/' ?>">Disclaimer</a></li> -->
           </ul>
         </div>
         <div class="col-12 col-sm-12 col-md-4 col-lg-3 newsletter-col">

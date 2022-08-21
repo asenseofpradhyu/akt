@@ -64,6 +64,23 @@ class Pages extends Controller
     $this->view('product/productlist');
   }
 
+  public function privacy_policy(){
+    $this->view('pages/privacy_policy');
+  }
+
+  public function shipping_policy(){
+    $this->view('pages/shipping_policy');
+  }
+
+  public function terms_conditions(){
+    $this->view('pages/terms_conditions');
+  }
+
+  public function return_policy(Type $var = null)
+  {
+    $this->view('pages/return_policy');
+  }
+
   public function contact()
   {
 

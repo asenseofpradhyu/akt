@@ -45,13 +45,13 @@ class Users extends Controller
             // Check for user/email
             if ($this->userModel->findUserByEmail($data['email'])) {
                 // User found
-                $data['email_err'] = 'Email Already Exist';
+                $data['email_err'] = 'Account Already exist, please try to login.';
             }
 
             // Check for user/phone
             if ($this->userModel->findUserByPhone($data['phone'])) {
                 // User found
-                $data['phone_err'] = 'Phone Number Already Exist';
+                $data['phone_err'] = 'Phone Number Already Exist with another account, please use another number.';
             }
 
             // Make sure errors are empty

@@ -39,7 +39,7 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label for="phone">Phone Number <span class="required">*</span></label>
-                                    <input id="phone" type="number" name="Customerphone" placeholder="" class="" autocorrect="off" autocapitalize="off" autofocus>
+                                    <input id="phone" type="text" name="Customerphone" placeholder="" class="" autocorrect="off" autocapitalize="off" autofocus>
                                     <span class="invalid-feedback d-block" style="color: red;"><?php echo $data['phone_err']; ?></span>
                                 </div>
                             </div>

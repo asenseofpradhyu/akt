@@ -1,3 +1,4 @@
 public/.htaccess
 .htaccess
 app/config/*.php
+.editorconfig

@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-div id="page-content">        
+<div id="page-content">
         <!--Body Container-->
         <!--Breadcrumbs-->
         <div class="breadcrumbs-wrapper">

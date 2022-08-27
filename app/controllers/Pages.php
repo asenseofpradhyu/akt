@@ -76,7 +76,7 @@ class Pages extends Controller
     $this->view('pages/terms_conditions');
   }
 
-  public function return_policy(Type $var = null)
+  public function return_policy()
   {
     $this->view('pages/return_policy');
   }

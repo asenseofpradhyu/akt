@@ -152,6 +152,7 @@
 <script src="<?php echo URLROOT; ?>/js/main.js"></script>
 <script src="<?php echo URLROOT; ?>/js/app.js"></script>
 <script src="<?php echo URLROOT; ?>/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js" integrity="sha512-/KqL6qPlIMqbgKgrc650iXf2m5Z1vHDbWcuecnn1SGC7mmyp3v1nYNj0BSn8bVFQ+FOqJ1b9qrXTIPSj2+yWYw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script async type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-62bc8c28ac0db2f6"></script>
 

@@ -18,7 +18,9 @@
 <div id="pre-loader"> <img src="<?php echo URLROOT; ?>/images/loader.gif" alt="Loading..." /> </div>
 <div class="page-wrapper">
 <!--Promotion Bar-->
+<?php if(isset($data['offer_link'])): ?>
 <div class="notification-bar mobilehide"> <a href="<?php echo $data['offer_link']->link_url; ?>" class="notification-bar__message"><?php echo $data['offer_link']->content; ?></a> <span class="close-announcement"><i class="anm anm-times-l" aria-hidden="true"></i></span> </div>
+<?php endif; ?>
 <!--End Promotion Bar--> 
   <?php require APPROOT . '/views/inc/navbar.php'; ?>
   <!-- <div class="container"> -->
